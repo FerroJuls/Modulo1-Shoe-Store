@@ -1,4 +1,4 @@
-package com.Modulo1.shoestore.controller;
+package com.shoestore.shoestore.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.shoestore.shoestore.interfaceService.IclienteService;
+import com.shoestore.shoestore.models.Cliente;
 
 @RequestMapping("/api/v1/Cliente/")
 @RestController
@@ -107,11 +110,11 @@ public class clienteController {
 
                 Cliente.setEstado("INACTIVO");
                 clienteService.save(Cliente);
-                return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
+                return new ResponseEntity<>("El cliente se ha inactivado correctamente", HttpStatus.OK);
             } else
                 Cliente.setEstado("ACTIVO");
             clienteService.save(Cliente);
-            return new ResponseEntity<>("Se ha habilitado correctamente", HttpStatus.OK);
+            return new ResponseEntity<>("El cliente se ha activado correctamente", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
@@ -144,7 +147,4 @@ public class clienteController {
             return new ResponseEntity<>("Error Cliente NO Encontrado", HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
 }

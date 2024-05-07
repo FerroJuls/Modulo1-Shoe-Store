@@ -1,10 +1,10 @@
-package com.Modulo1.shoestore;
+package com.shoestore.shoestore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ShoeStoreApplicationTests {
+class ShoestoreApplicationTests {
 
 	@Test
 	void contextLoads() {

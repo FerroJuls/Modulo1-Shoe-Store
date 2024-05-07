@@ -1,13 +1,13 @@
-package com.Modulo1.shoestore;
+package com.shoestore.shoestore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShoeStoreApplication {
+public class ShoestoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShoeStoreApplication.class, args);
+		SpringApplication.run(ShoestoreApplication.class, args);
 	}
 
 }
