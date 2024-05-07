@@ -22,9 +22,9 @@ public interface Iproducto extends CrudRepository< Producto , String> {
      * Estado
      */
 
-    @Query("SELECT m FROM Producto m WHERE m.nombreProducto LIKE %?1%")
+    @Query("SELECT p FROM Producto p WHERE p.nombreProducto LIKE %?1%")
     List<Producto> filtroProducto(String filtro);
 
-    @Query("SELECT m FROM Producto m WHERE m.Estado LIKE %?1%")
+    @Query("SELECT p FROM Producto p WHERE p.Estado LIKE %?1%")
     List<Producto> filtroProductoEstado(char estado);
 }

@@ -28,7 +28,7 @@ public class Producto {
     @Column(name = "porcentajeIva", nullable = false, length = 2)
     private String porcentajeIva;
 
-    @Column(name = "porcentajeIescuento", nullable = false, length = 2)
+    @Column(name = "porcentajeDescuento", nullable = false, length = 2)
     private String porcentajeDescuento;
 
     @Column(name = "Estado", nullable = false, length = 8)
