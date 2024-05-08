@@ -548,12 +548,6 @@ $(document).on("click", ".cambiarEstado", function () {
     });
 });
 
-
-
-
-
-
-
 $(document).on("click", ".eliminar", function () {
     // Obtener el ID del cliente desde el atributo data del elemento clicado
     var idCliente = $(this).data("id");
