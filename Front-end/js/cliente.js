@@ -3,7 +3,7 @@ function buscarClientePorFiltro(filtro) {
         listarCliente(); // Mostrar todos los Clientes si estado es vacío
     }else{
         $.ajax({
-            url: "http://localhost:8080/api/v1/Cliente/busquedafiltro/" + filtro,
+            url: "http://localhost:8080/api/v1/cliente/busquedafiltro/" + filtro,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -14,17 +14,17 @@ function buscarClientePorFiltro(filtro) {
                     trRegistro.innerHTML = `
                         <td>${result[i]["idCliente"]}</td>
                         <td class="text-center align-middle">${result[i]["tipoDocumento"]}</td>
-                        <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Nombre"]}</td>
-                        <td class="text-center align-middle">${result[i]["Apellido"]}</td>
-                        <td class="text-center align-middle">${result[i]["Telefono"]}</td>
-                        <td class="text-center align-middle">${result[i]["Direccion"]}</td>
-                        <td class="text-center align-middle">${result[i]["Ciudad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Correo"]}</td>
-                        <td class="text-center align-middle">${result[i]["Estado"]}</td>cliente
+                        <td class="text-center align-middle">${result[i]["numeroDocumento"]}</td>
+                        <td class="text-center align-middle">${result[i]["nombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["apellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["telefono"]}</td>
+                        <td class="text-center align-middle">${result[i]["direccion"]}</td>
+                        <td class="text-center align-middle">${result[i]["ciudad"]}</td>
+                        <td class="text-center align-middle">${result[i]["correo"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>cliente
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
@@ -42,10 +42,10 @@ function buscarClientePorFiltro(filtro) {
 function buscarClientePorEstado(estado) {
     if (estado === '') {
         listarCliente(); // Mostrar todos los Clientes si estado es vacío
-    } else if (estado === 'ACTIVO') {
+    } else if (estado === 'Activo') {
         // Mostrar solo los Clientes habilitados si estado es 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/Cliente/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/cliente/busquedafiltroestado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -56,17 +56,17 @@ function buscarClientePorEstado(estado) {
                     trRegistro.innerHTML = `
                         <td>${result[i]["idCliente"]}</td>
                         <td class="text-center align-middle">${result[i]["tipoDocumento"]}</td>
-                        <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Nombre"]}</td>
-                        <td class="text-center align-middle">${result[i]["Apellido"]}</td>
-                        <td class="text-center align-middle">${result[i]["Telefono"]}</td>
-                        <td class="text-center align-middle">${result[i]["Direccion"]}</td>
-                        <td class="text-center align-middle">${result[i]["Ciudad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Correo"]}</td>
-                        <td class="text-center align-middle">${result[i]["Estado"]}</td>cliente
+                        <td class="text-center align-middle">${result[i]["numeroDocumento"]}</td>
+                        <td class="text-center align-middle">${result[i]["nombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["apellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["telefono"]}</td>
+                        <td class="text-center align-middle">${result[i]["direccion"]}</td>
+                        <td class="text-center align-middle">${result[i]["ciudad"]}</td>
+                        <td class="text-center align-middle">${result[i]["correo"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
@@ -80,7 +80,7 @@ function buscarClientePorEstado(estado) {
     } else {
         // Mostrar solo los Clientes deshabilitados si no es vacío ni 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/Cliente/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/cliente/busquedafiltroestado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -91,17 +91,17 @@ function buscarClientePorEstado(estado) {
                     trRegistro.innerHTML = `
                         <td>${result[i]["idCliente"]}</td>
                         <td class="text-center align-middle">${result[i]["tipoDocumento"]}</td>
-                        <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Nombre"]}</td>
-                        <td class="text-center align-middle">${result[i]["Apellido"]}</td>
-                        <td class="text-center align-middle">${result[i]["Telefono"]}</td>
-                        <td class="text-center align-middle">${result[i]["Direccion"]}</td>
-                        <td class="text-center align-middle">${result[i]["Ciudad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Correo"]}</td>
-                        <td class="text-center align-middle">${result[i]["Estado"]}</td>cliente
+                        <td class="text-center align-middle">${result[i]["numeroDocumento"]}</td>
+                        <td class="text-center align-middle">${result[i]["nombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["apellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["telefono"]}</td>
+                        <td class="text-center align-middle">${result[i]["direccion"]}</td>
+                        <td class="text-center align-middle">${result[i]["ciudad"]}</td>
+                        <td class="text-center align-middle">${result[i]["correo"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
@@ -121,7 +121,7 @@ function buscarClientePorEstado(estado) {
 
 
 // URL de la API
-var url = "http://localhost:8080/api/v1/Cliente/";
+var url = "http://localhost:8080/api/v1/cliente/";
 
 // Función para listar los Clientes
 function listarCliente() {
@@ -137,17 +137,17 @@ function listarCliente() {
                 trRegistro.innerHTML = `
                     <td>${result[i]["idCliente"]}</td>
                     <td class="text-center align-middle">${result[i]["tipoDocumento"]}</td>
-                    <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
-                    <td class="text-center align-middle">${result[i]["Nombre"]}</td>
-                    <td class="text-center align-middle">${result[i]["Apellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["Telefono"]}</td>
-                    <td class="text-center align-middle">${result[i]["Direccion"]}</td>
-                    <td class="text-center align-middle">${result[i]["Ciudad"]}</td>
-                    <td class="text-center align-middle">${result[i]["Correo"]}</td>
-                    <td class="text-center align-middle">${result[i]["Estado"]}</td>cliente
+                    <td class="text-center align-middle">${result[i]["numeroDocumento"]}</td>
+                    <td class="text-center align-middle">${result[i]["nombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["apellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["telefono"]}</td>
+                    <td class="text-center align-middle">${result[i]["direccion"]}</td>
+                    <td class="text-center align-middle">${result[i]["ciudad"]}</td>
+                    <td class="text-center align-middle">${result[i]["correo"]}</td>
+                    <td class="text-center align-middle">${result[i]["estado"]}</td>
                     <td class="text-center align-middle">
                         <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
                         <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                     </td>
                 `;
@@ -165,25 +165,25 @@ var registrarClienteBandera = true;
 // Función para registrar un cliente
 function registrarCliente() {
     var tipoDocumento = document.getElementById("tipoDocumento");
-    var documentoIdentidad = document.getElementById("documentoIdentidad");
-    var Nombre = document.getElementById("Nombre");
-    var Apellido = document.getElementById("Apellido");
-    var Telefono = document.getElementById("Telefono");
-    var Direccion = document.getElementById("Direccion");
-    var Ciudad = document.getElementById("Ciudad");
-    var Correo = document.getElementById("Correo");
-    var Estado = document.getElementById("Estado");
+    var numeroDocumento = document.getElementById("numeroDocumento");
+    var nombre = document.getElementById("nombre");
+    var apellido = document.getElementById("apellido");
+    var telefono = document.getElementById("telefono");
+    var direccion = document.getElementById("direccion");
+    var ciudad = document.getElementById("ciudad");
+    var correo = document.getElementById("correo");
+    var estado = document.getElementById("estado");
 
     // Verificar si algún campo obligatorio está vacío
     if (!validarTipoDocumento(tipoDocumento) ||
-        !validarDocumentoIdentidad(documentoIdentidad) ||
-        !validarNombre(Nombre) ||
-        !validarApellido(Apellido) ||
-        !validarTelefono(Telefono) ||
-        !validarDireccion(Direccion) ||
-        !validarCiudad(Ciudad) ||
-        !validarCorreo(Correo) ||
-        !validarEstado(Estado)) {
+        !validarNumeroDocumento(numeroDocumento) ||
+        !validarNombre(nombre) ||
+        !validarApellido(apellido) ||
+        !validarTelefono(telefono) ||
+        !validarDireccion(direccion) ||
+        !validarCiudad(ciudad) ||
+        !validarCorreo(correo) ||
+        !validarEstado(estado)) {
         // Mostrar una alerta indicando que todos los campos son obligatorios
         Swal.fire({
             title: "¡Error!",
@@ -195,14 +195,14 @@ function registrarCliente() {
 
     var forData = {
         "tipoDocumento": tipoDocumento.value,
-        "documentoIdentidad": documentoIdentidad.value,
-        "Nombre": Nombre.value,
-        "Apellido": Apellido.value,
-        "Telefono": Telefono.value,
-        "Direccion": Direccion.value,
-        "Ciudad": Ciudad.value,
-        "Correo": Correo.value,
-        "Estado": Estado.value,
+        "numeroDocumento": numeroDocumento.value,
+        "nombre": nombre.value,
+        "apellido": apellido.value,
+        "telefono": telefono.value,
+        "direccion": direccion.value,
+        "ciudad": ciudad.value,
+        "correo": correo.value,
+        "estado": estado.value,
     };
 
     var metodo = "";
@@ -272,7 +272,7 @@ function validarTipoDocumento(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 5 || valor.length > 11) {
+    if (valor.length < 0 || valor.length > 3) {
         valido = false;
     }
 
@@ -287,12 +287,12 @@ function validarTipoDocumento(cuadroNumero) {
 
 // Función Documento Identidad
 function validarCampos() {
-    var documentoIdentidad = document.getElementById("documentoIdentidad");
-    return validarDocumentoIdentidad(documentoIdentidad);
+    var numeroDocumento = document.getElementById("numeroDocumento");
+    return validarNumeroDocumento(numeroDocumento);
 }
 
 // Función para validar el documento de identidad
-function validarDocumentoIdentidad(cuadroNumero) {
+function validarNumeroDocumento(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
@@ -312,9 +312,9 @@ function validarDocumentoIdentidad(cuadroNumero) {
 
 // Función Nombre
 
-function validarCamposNombre() {
-    var Nombre = document.getElementById("Nombre");
-    return validarNombre(Nombre);
+function validarCamposnombre() {
+    var nombre = document.getElementById("nombre");
+    return validarNombre(nombre);
 }
 
 function validarNombre(cuadroNumero) {
@@ -336,9 +336,9 @@ function validarNombre(cuadroNumero) {
 
 // Función Apellido
 
-function validarCamposApellido() {
-    var Apellido = document.getElementById("Apellido");
-    return validarApellido(Apellido);
+function validarCamposapellido() {
+    var apellido = document.getElementById("apellido");
+    return validarApellido(apellido);
 }
 
 function validarApellido(cuadroNumero) {
@@ -360,9 +360,9 @@ function validarApellido(cuadroNumero) {
 
 // Función Telefono
 
-function validarCamposTelefono() {
-    var Telefono = document.getElementById("Telefono");
-    return validarTelefono(Telefono);
+function validarCampostelefono() {
+    var telefono = document.getElementById("telefono");
+    return validarTelefono(telefono);
 }
 
 function validarTelefono(cuadroNumero) {
@@ -384,12 +384,12 @@ function validarTelefono(cuadroNumero) {
 
 // Función Dirección
 
-function validarCamposDirección() {
-    var Dirección = document.getElementById("Dirección");
-    return validarDirección(Dirección);
+function validarCamposdireccion() {
+    var direccion = document.getElementById("direccion");
+    return validarDireccion(direccion);
 }
 
-function validarDirección(cuadroNumero) {
+function validarDireccion(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
@@ -408,9 +408,9 @@ function validarDirección(cuadroNumero) {
 
 // Función Ciudad
 
-function validarCamposCiudad() {
-    var Ciudad = document.getElementById("Ciudad");
-    return validarCiudad(Ciudad);
+function validarCamposciudad() {
+    var ciudad = document.getElementById("ciudad");
+    return validarCiudad(ciudad);
 }
 
 function validarCiudad(cuadroNumero) {
@@ -432,9 +432,9 @@ function validarCiudad(cuadroNumero) {
 
 // Función Correo
 
-function validarCamposCorreo() {
-    var Correo = document.getElementById("Correo");
-    return validarCorreo(Correo);
+function validarCamposcorreo() {
+    var correo = document.getElementById("correo");
+    return validarCorreo(correo);
 }
 
 function validarCorreo(cuadroNumero) {
@@ -456,9 +456,9 @@ function validarCorreo(cuadroNumero) {
 
 // Función Estado
 
-function validarCamposEstado() {
-    var Estado = document.getElementById("Estado");
-    return validarEstado(Estado);
+function validarCamposestado() {
+    var estado = document.getElementById("estado");
+    return validarEstado(estado);
 }
 
 function validarEstado(cuadroNumero) {
@@ -485,22 +485,22 @@ function validarEstado(cuadroNumero) {
 function limpiar() {
     document.getElementById("tipoDocumento").value = "";
     document.getElementById("tipoDocumento").className = "form-control";
-    document.getElementById("documentoIdentidad").value = "";
-    document.getElementById("documentoIdentidad").className = "form-control";
-    document.getElementById("Nombre").value = "";
-    document.getElementById("Nombre").className = "form-control";
-    document.getElementById("Apellido").value = "";
-    document.getElementById("Apellido").className = "form-control";
-    document.getElementById("Telefono").value = "";
-    document.getElementById("Telefono").className = "form-control";
-    document.getElementById("Direccion").value = "";
-    document.getElementById("Direccion").className = "form-control";
-    document.getElementById("Ciudad").value = "";
-    document.getElementById("Ciudad").className = "form-control";
-    document.getElementById("Correo").value = "";
-    document.getElementById("Correo").className = "form-control";
-    document.getElementById("Estado").value = "";
-    document.getElementById("Estado").className = "form-control";
+    document.getElementById("numeroDocumento").value = "";
+    document.getElementById("numeroDocumento").className = "form-control";
+    document.getElementById("nombre").value = "";
+    document.getElementById("nombre").className = "form-control";
+    document.getElementById("apellido").value = "";
+    document.getElementById("apellido").className = "form-control";
+    document.getElementById("telefono").value = "";
+    document.getElementById("telefono").className = "form-control";
+    document.getElementById("direccion").value = "";
+    document.getElementById("direccion").className = "form-control";
+    document.getElementById("ciudad").value = "";
+    document.getElementById("ciudad").className = "form-control";
+    document.getElementById("correo").value = "";
+    document.getElementById("correo").className = "form-control";
+    document.getElementById("estado").value = "";
+    document.getElementById("estado").className = "form-control";
 }
 
 var idCliente = "";
@@ -514,14 +514,14 @@ $(document).on("click", ".editar", function () {
         type: "GET",
         success: function (cliente) {
             document.getElementById("tipoDocumento").value = cliente.tipoDocumento;
-            document.getElementById("documentoIdentidad").value = cliente.documentoIdentidad;
-            document.getElementById("Nombre").value = cliente.Nombre;
-            document.getElementById("Apellido").value = cliente.Apellido;
-            document.getElementById("Telefono").value = cliente.Telefono;
-            document.getElementById("Direccion").value = cliente.Direccion;
-            document.getElementById("Ciudad").value = cliente.Ciudad;
-            document.getElementById("Correo").value = cliente.Correo;
-            document.getElementById("Estado").value = cliente.estado;
+            document.getElementById("numeroDocumento").value = cliente.numeroDocumento;
+            document.getElementById("nombre").value = cliente.nombre;
+            document.getElementById("apellido").value = cliente.apellido;
+            document.getElementById("telefono").value = cliente.telefono;
+            document.getElementById("direccion").value = cliente.direccion;
+            document.getElementById("ciudad").value = cliente.ciudad;
+            document.getElementById("correo").value = cliente.correo;
+            document.getElementById("estado").value = cliente.estado;
             $('#exampleModal').modal('show');
         },
         error: function (error) {
@@ -547,6 +547,10 @@ $(document).on("click", ".cambiarEstado", function () {
         }
     });
 });
+
+
+
+
 
 
 

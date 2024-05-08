@@ -14,7 +14,7 @@ import com.shoestore.shoestore.models.cliente;
 public class clienteService implements IclienteService {
 
     @Autowired
-    private Icliente data;
+    public Icliente data;
 
     @Override
     public String save(cliente cliente) {

@@ -14,6 +14,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -49,9 +51,9 @@
             </div>
             <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
                 <select id="filtroEstado" name="filtroEstado">
-                    <option value="">TODOS</option>
-                    <option value="ACTIVO">ACTIVO</option>
-                    <option value="INACTIVO">INACTIVO</option>
+                    <option value="">Todos</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
                 </select>
             </div>
             <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
@@ -67,58 +69,17 @@
             <div class="colorTabla">
                 <tr>
                     <th>ID</th>
-                    <th>T.D</th>
-                    <th>N° documento</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th>Ciudad</th>
-                    <th>Correo</th>
-                    <th>Estado</th>
+                    <th class="text-center align-middle">T.D</th>
+                    <th class="text-center align-middle">N° documento</th>
+                    <th class="text-center align-middle">Nombre</th>
+                    <th class="text-center align-middle">Apellido</th>
+                    <th class="text-center align-middle">Teléfono</th>
+                    <th class="text-center align-middle">Dirección</th>
+                    <th class="text-center align-middle">Ciudad</th>
+                    <th class="text-center align-middle">Correo</th>
+                    <th class="text-center align-middle">Estado</th>
                     <th class="text-center align-middle">Opciones</th>
                 </tr>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>CC</td>
-                        <td>1084922584</td>
-                        <td>JULIAN</td>
-                        <td>FIERRO</td>
-                        <td>3175447397</td>
-                        <td>CR 3#6-52</td>
-                        <td>Neiva</td>
-                        <td>Correo</td>
-                        <td>ACTIVO</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>CC</td>
-                        <td>1084922584</td>
-                        <td>JULIAN</td>
-                        <td>FIERRO</td>
-                        <td>3175447397</td>
-                        <td>CR 3#6-52</td>
-                        <td>Neiva</td>
-                        <td>Correo</td>
-                        <td>ACTIVO</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>CC</td>
-                        <td>1084922584</td>
-                        <td>JULIAN</td>
-                        <td>FIERRO</td>
-                        <td>3175447397</td>
-                        <td>CR 3#6-52</td>
-                        <td>Neiva</td>
-                        <td>Correo</td>
-                        <td>ACTIVO</td>
-                        <td></td>
-                    </tr>
-                </tbody>
             </div>
             <tbody id="cuerpoTabla"></tbody>
             <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
@@ -155,52 +116,52 @@
 
                                     <div class="col col-xl-6 col-12 table-hover">
                                         <label for="">N° De Documento</label>
-                                        <input type="number" id="documentoIdentidad" class="form-control"
-                                            onfocusout="validarDocumentoIdentidad(this)" required>
+                                        <input type="number" id="numeroDocumento" class="form-control"
+                                            onfocusout="validarNumeroDocumento(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12 table-hover">
                                         <label for="">Nombre</label>
-                                        <input type="text" id="Nombre" class="form-control"
+                                        <input type="text" id="nombre" class="form-control"
                                             onfocusout="validarNombre(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="">Apellido</label>
-                                        <input type="text" id="Apellido" class="form-control"
+                                        <input type="text" id="apellido" class="form-control"
                                             onfocusout="validarApellido(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="">Teléfono</label>
-                                        <input type="text" id="Telefono" class="form-control"
+                                        <input type="text" id="telefono" class="form-control"
                                             onfocusout="validarTelefono(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="">Dirección</label>
-                                        <input type="text" id="Direccion" class="form-control"
+                                        <input type="text" id="direccion" class="form-control"
                                             onfocusout="validarDireccion(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="">Ciudad</label>
-                                        <input type="text" id="Ciudad" class="form-control"
+                                        <input type="text" id="ciudad" class="form-control"
                                             onfocusout="validarCiudad(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="">Correo</label>
-                                        <input type="text" id="Correo" class="form-control"
+                                        <input type="text" id="correo" class="form-control"
                                             onfocusout="validarCorreo(this)" required>
                                     </div>
 
                                     <div class="col col-xl-12 col-12">
                                         <label for="Estado">Estado</label>
-                                        <select id="Estado" class="form-control" onfocusout="validarEstado(this)"
+                                        <select id="estado" class="form-control" onfocusout="validarEstado(this)"
                                             required>
-                                            <option value="ACTIVO">ACTIVO</option>
-                                            <option value="INACTIVO">INACTIVO</option>
+                                            <option value="Activo">Activo</option>
+                                            <option value="Inactivo">Inactivo</option>
                                         </select>
                                     </div>
                                 </form>

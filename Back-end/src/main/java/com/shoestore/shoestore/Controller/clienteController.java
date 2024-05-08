@@ -42,17 +42,37 @@ public class clienteController {
 
         if (cliente.getNumeroDocumento().equals("")) {
 
-            return new ResponseEntity<>("El numero de documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (cliente.getNombreCliente().equals("")) {
+        if (cliente.getNombre().equals("")) {
 
             return new ResponseEntity<>("El nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (cliente.getApellidoCliente().equals("")) {
+        if (cliente.getApellido().equals("")) {
 
             return new ResponseEntity<>("El apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (cliente.getTelefono().equals("")) {
+
+            return new ResponseEntity<>("El numero de teléfono es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (cliente.getDireccion().equals("")) {
+
+            return new ResponseEntity<>("La dirección es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (cliente.getCiudad().equals("")) {
+
+            return new ResponseEntity<>("La ciudad es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (cliente.getCorreo().equals("")) {
+
+            return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getEstado().equals("")) {
@@ -109,8 +129,8 @@ public class clienteController {
 
             cliente.setTipoDocumento(clienteUpdate.getTipoDocumento());
             cliente.setNumeroDocumento(clienteUpdate.getNumeroDocumento());
-            cliente.setNombreCliente(clienteUpdate.getNombreCliente());
-            cliente.setApellidoCliente(clienteUpdate.getApellidoCliente());
+            cliente.setNombre(clienteUpdate.getNombre());
+            cliente.setApellido(clienteUpdate.getApellido());
             cliente.setDireccion(clienteUpdate.getDireccion());
             cliente.setCiudad(clienteUpdate.getCiudad());
             cliente.setTelefono(clienteUpdate.getTelefono());

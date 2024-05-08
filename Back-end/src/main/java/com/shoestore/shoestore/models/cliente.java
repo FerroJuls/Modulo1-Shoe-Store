@@ -25,17 +25,17 @@ public class cliente {
      @Column(name = "idCliente", nullable = false, length = 36)
      private String idCliente;
 
-     @Column(name = "tipoDocumento" , nullable = false, length = 10)
+     @Column(name = "tipoDocumento" , nullable = false, length = 2)
      private String tipoDocumento;
 
      @Column(name = "numeroDocumento", nullable = false, length = 10)
      private String numeroDocumento;
 
-     @Column(name = "nombreCliente", nullable = false, length = 45)
-     private String nombreCliente;
+     @Column(name = "nombre", nullable = false, length = 45)
+     private String nombre;
 
-     @Column(name = "apellidoCliente", nullable = false, length = 45)
-     private String apellidoCliente;
+     @Column(name = "apellido", nullable = false, length = 45)
+     private String apellido;
 
      @Column(name = "telefono", nullable = false, length = 13)
      private String telefono;
@@ -46,22 +46,26 @@ public class cliente {
      @Column(name = "ciudad", nullable = false, length = 45)
      private String ciudad;
 
-     @Column(name = "estado", nullable = false, length = 11)
+     @Column(name = "correo", nullable = false, length = 100)
+     private String correo;
+
+     @Column(name = "estado", nullable = false, length = 9)
      private String estado;
 
     public cliente() {
     }
 
-    public cliente(String idCliente, String tipoDocumento, String numeroDocumento, String nombreCliente,
-            String apellidoCliente, String telefono, String direccion, String ciudad, String estado) {
+    public cliente(String idCliente, String tipoDocumento, String numeroDocumento, String nombre, String apellido,
+            String telefono, String direccion, String ciudad, String correo, String estado) {
         this.idCliente = idCliente;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
-        this.nombreCliente = nombreCliente;
-        this.apellidoCliente = apellidoCliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.telefono = telefono;
         this.direccion = direccion;
         this.ciudad = ciudad;
+        this.correo = correo;
         this.estado = estado;
     }
 
@@ -89,20 +93,20 @@ public class cliente {
         this.numeroDocumento = numeroDocumento;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidoCliente() {
-        return apellidoCliente;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidoCliente(String apellidoCliente) {
-        this.apellidoCliente = apellidoCliente;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getTelefono() {
@@ -129,6 +133,14 @@ public class cliente {
         this.ciudad = ciudad;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -137,5 +149,6 @@ public class cliente {
         this.estado = estado;
     }
 
+    
      
 }
