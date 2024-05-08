@@ -17,6 +17,7 @@ public class Cliente {
      * - teléfono (obligatorio)
      * - direccion (obligatorio)
      * - ciudad (obligatorio)
+     * - correo (obligatorio)
      * - Estado (ACTIVO, INACTIVO)
      */
 
@@ -46,6 +47,9 @@ public class Cliente {
     @Column(name = "Ciudad", nullable = false, length = 45)
     private String Ciudad;
 
+    @Column(name = "Correo", nullable = false, length = 100)
+    private String Correo;
+
     @Column(name = "Estado", nullable = false, length = 8)
     private String Estado;
 
@@ -53,7 +57,7 @@ public class Cliente {
     }
 
     public Cliente(String idCliente, String tipoDocumento, String documentoIdentidad, String nombre, String apellido,
-            String telefono, String direccion, String ciudad, String estado) {
+            String telefono, String direccion, String ciudad, String correo, String estado) {
         this.idCliente = idCliente;
         this.tipoDocumento = tipoDocumento;
         this.documentoIdentidad = documentoIdentidad;
@@ -62,6 +66,7 @@ public class Cliente {
         Telefono = telefono;
         Direccion = direccion;
         Ciudad = ciudad;
+        Correo = correo;
         Estado = estado;
     }
 
@@ -129,6 +134,14 @@ public class Cliente {
         Ciudad = ciudad;
     }
 
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String correo) {
+        Correo = correo;
+    }
+
     public String getEstado() {
         return Estado;
     }
@@ -136,6 +149,8 @@ public class Cliente {
     public void setEstado(String estado) {
         Estado = estado;
     }
+
+    
 
     
     

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/Front-end/img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Shop</title>
+    <link rel="stylesheet" href="/Front-end/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <a href="/Front-end/html/index.html"><img src="/Front-end/img/logo.png" alt="Logo de Shoe Shop"></a>
+            <span class="company-name">Shoe Shop</span>
+        </div>
+        <ul>
+            <li><a href="/Front-end/html/cliente.html"><i class="fas fa-user"></i> Cliente</a></li>
+            <li><a href="/Front-end/html/producto.html"><i class="fas fa-box"></i> Producto</a></li>
+            <li><a href="/Front-end/html/venta.html"><i class="fas fa-shopping-cart"></i> Venta</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>Producto</h1>
+        </div> 
+        <div class="container">
+            <div class="item" style="margin-right: 0.9%;"><label for="filtroNombre">Filtrar por nombre:</label></div>
+            <div class="item" style="margin-right: 0.9%;"><label for="filtroEstado">Filtrar por estado:</label></div>
+            <div class="item1" style="margin-right: 0.1%;"><button type="button" class="btn btn-dark"
+                    data-bs-toggle="modal" onclick="registrarProductoBandera=true; limpiar();"
+                    data-bs-target="#exampleModal">Registrar Producto</button></div>
+        </div>
+        <div class="container">
+            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
+                <input type="text" id="filtroNombre" name="filtroNombre" placeholder="Ingrese el nombre">
+            </div>
+            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
+                <select id="filtroEstado" name="filtroEstado">
+                    <option value="">TODOS</option>
+                    <option value="ACTIVO">ACTIVO</option>
+                    <option value="INACTIVO">INACTIVO</option>
+                </select>
+            </div>
+            <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
+                <button type="button" class="btn btn-dark">Aplicar</button>
+            </div>
+            <div class="item1"> <!-- No necesitas margen derecho aquí -->
+                <button type="button" class="btn btn-dark">Limpiar</button>
+            </div>
+        </div>
+
+
+        <table class=" table table-hover table-striped">
+            <div class="colorTabla">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>IVA %</th>
+                    <th>Descuento %</th>
+                    <th>Estado</th>
+                    <th class="text-center align-middle">Opciones</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Zapatos1</td>
+                        <td>Descripción1</td>
+                        <td>10</td>
+                        <td>100.000</td>
+                        <td>10%</td>
+                        <td>5%</td>
+                        <td>ACTIVO</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Zapatos2</td>
+                        <td>Descripción2</td>
+                        <td>10</td>
+                        <td>100.000</td>
+                        <td>10%</td>
+                        <td>5%</td>
+                        <td>ACTIVO</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Zapatos3</td>
+                        <td>Descripción3</td>
+                        <td>10</td>
+                        <td>100.000</td>
+                        <td>10%</td>
+                        <td>5%</td>
+                        <td>ACTIVO</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </div>
+            <tbody id="cuerpoTabla"></tbody>
+            <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+        </table>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog fondomodaldialog">
+        <div class="modal-content col modal-custom">
+            <div class="modal-header">
+                <button type="button" class="col-1 btn-close" data-bs-dismiss="modal" aria-label="Close" id="X"></button>
+                <h1 class="modal-title fs-5 col-11" id="exampleModalLabel" style="font-family: Georgia, 'Times New Roman', Times, serif; text-align: center;">
+                    Registro Producto
+                </h1>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="centradoo">
+                        <div class="container col">
+                            <br>
+                            <form class="row table-hover needs-validation">
+
+                                <div class="col col-xl-6 col-12 table-hover">
+                                    <label for="">Nombre</label>
+                                    <input type="number" id="nombreProducto" class="form-control" onfocusout="validarNombreProducto(this)" required>
+                                </div>
+
+                                <div class="col col-xl-6 col-12 table-hover">
+                                    <label for="">Descripción</label>
+                                    <input type="text" id="Descripcion" class="form-control" onfocusout="validarDescripcion(this)" required>
+                                </div>
+
+                                <div class="col col-xl-6 col-12">
+                                    <label for="">Cantidad</label>
+                                    <input type="text" id="Cantidad" class="form-control" onfocusout="validarCantidad(this)" required>
+                                </div>
+
+                                <div class="col col-xl-6 col-12">
+                                    <label for="">Precio</label>
+                                    <input type="text" id="Precio" class="form-control" onfocusout="validarPrecio(this)" required>
+                                </div>
+
+                                <div class="col col-xl-6 col-12">
+                                    <label for="">IVA %</label>
+                                    <input type="text" id="porcentajeIva" class="form-control" onfocusout="validarPorcentajeIva(this)" required>
+                                </div>
+
+                                <div class="col col-xl-6 col-12">
+                                    <label for="">Descuento %</label>
+                                    <input type="text" id="porcentajeDescuento" class="form-control" onfocusout="validarPorcentajeDescuento(this)" required>
+                                </div>
+
+                                <div class="col col-xl-12 col-12">
+                                    <label for="Estado">Estado</label>
+                                    <select id="Estado" class="form-control" onfocusout="validarEstado(this)" required>
+                                        <option value="ACTIVO">ACTIVO</option>
+                                        <option value="INACTIVO">INACTIVO</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-dark"
+                    onclick="registrarProducto(); limpiar();">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Front-end/js/producto.js"></script>
+</body>
+
+</html>

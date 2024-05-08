@@ -23,59 +23,67 @@ public class clienteController {
     private IclienteService clienteService;
 
     @PostMapping("/")
-    public ResponseEntity<Object> save(@ModelAttribute("Cliente") Cliente Cliente) {
+    public ResponseEntity<Object> save(@ModelAttribute("cliente") Cliente cliente) {
         var listaCliente = clienteService.findAll()
-                .stream().filter(cliente -> cliente.getDocumentoIdentidad()
+                .stream().filter(Cliente -> Cliente.getDocumentoIdentidad()
                         .equals(cliente.getDocumentoIdentidad()));
+
         if (listaCliente.count() != 0) {
-            return new ResponseEntity<>("El cliente ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Este cliente ya existe", HttpStatus.BAD_REQUEST);
+        }
+        
+        listaCliente = clienteService.findAll()
+                .stream().filter(Cliente -> Cliente.getCorreo()
+                        .equals(Cliente.getCorreo()));
+        if (listaCliente.count() != 0) {
+            return new ResponseEntity<>("El correo ya existe", HttpStatus.BAD_REQUEST);
         }
 
         // verificar que el campo documento de identidad sea diferente vacio
-        if (Cliente.getTipoDocumento().equals("")) {
+        // Añadir campos obligatorios
+
+        if (cliente.getTipoDocumento().equals("")) {
 
             return new ResponseEntity<>("El tipo de documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getDocumentoIdentidad().equals("")) {
+        if (cliente.getDocumentoIdentidad().equals("")) {
 
-            return new ResponseEntity<>("El documento de identidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El numero de documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getNombre().equals("")) {
+        if (cliente.getNombre().equals("")) {
 
             return new ResponseEntity<>("El nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getApellido().equals("")) {
+        if (cliente.getTelefono().equals("")) {
 
             return new ResponseEntity<>("El apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getTelefono().equals("")) {
+        if (cliente.getDireccion().equals("")) {
 
-            return new ResponseEntity<>("El numero de teléfono es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getDireccion().equals("")) {
+        if (cliente.getCiudad().equals("")) {
 
-            return new ResponseEntity<>("La dirección es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getCiudad().equals("")) {
+        if (cliente.getCorreo().equals("")) {
 
-            return new ResponseEntity<>("La ciudad es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (Cliente.getEstado().equals("")) {
+        if (cliente.getEstado().equals("")) {
 
             return new ResponseEntity<>("El estado es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
-        
-        // todo bien
-        clienteService.save(Cliente);
-        return new ResponseEntity<>(Cliente, HttpStatus.OK);
 
+        clienteService.save(cliente);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
     @GetMapping("/")
@@ -90,31 +98,20 @@ public class clienteController {
         return new ResponseEntity<>(listaCliente, HttpStatus.OK);
     }
 
-    @GetMapping("/busquedafiltroestado/{estado}")
-    public ResponseEntity<Object> findEstado(@PathVariable char estado) {
-        var listaCliente = clienteService.filtroClienteEstado(estado);
-        return new ResponseEntity<>(listaCliente, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> findOne(@PathVariable String id) {
-        var Cliente = clienteService.findOne(id);
-        return new ResponseEntity<>(Cliente, HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
-        var Cliente = clienteService.findOne(id).get();
-        if (Cliente != null) {
-            if (Cliente.getEstado().equals("ACTIVO")) {
+        var cliente = clienteService.findOne(id).get();
 
-                Cliente.setEstado("INACTIVO");
-                clienteService.save(Cliente);
-                return new ResponseEntity<>("El cliente se ha inactivado correctamente", HttpStatus.OK);
+        if (cliente != null) {
+            if (cliente.getEstado().equals("Activo")) {
+
+                cliente.setEstado("Inactivo");
+                clienteService.save(cliente);
+                return new ResponseEntity<>("Se ha inactivado correctamente", HttpStatus.OK);
             } else
-                Cliente.setEstado("ACTIVO");
-            clienteService.save(Cliente);
-            return new ResponseEntity<>("El cliente se ha activado correctamente", HttpStatus.OK);
+                cliente.setEstado("Activo");
+            clienteService.save(cliente);
+            return new ResponseEntity<>("Se ha activado correctamente", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
@@ -127,24 +124,26 @@ public class clienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("Cliente") Cliente ClienteUpdate) {
-        var Cliente = clienteService.findOne(id).get();
-        if (Cliente != null) {
+    public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("cliente") Cliente clienteUpdate) {
+        var cliente = clienteService.findOne(id).get();
 
-            Cliente.setTipoDocumento(ClienteUpdate.getTipoDocumento());
-            Cliente.setDocumentoIdentidad(ClienteUpdate.getDocumentoIdentidad());
-            Cliente.setNombre(ClienteUpdate.getNombre());
-            Cliente.setApellido(ClienteUpdate.getApellido());
-            Cliente.setTelefono(ClienteUpdate.getTelefono());
-            Cliente.setDireccion(ClienteUpdate.getDireccion());
-            Cliente.setCiudad(ClienteUpdate.getCiudad());
-            Cliente.setEstado(ClienteUpdate.getEstado());
+        if (cliente != null) {
 
-            clienteService.save(Cliente);
-            return new ResponseEntity<>(Cliente, HttpStatus.OK);
+            cliente.setTipoDocumento(clienteUpdate.getTipoDocumento());
+            cliente.setDocumentoIdentidad(clienteUpdate.getDocumentoIdentidad());
+            cliente.setNombre(clienteUpdate.getNombre());
+            cliente.setApellido(clienteUpdate.getApellido());
+            cliente.setTelefono(clienteUpdate.getTelefono());
+            cliente.setDireccion(clienteUpdate.getDireccion());
+            cliente.setCiudad(clienteUpdate.getCiudad());
+            cliente.setCorreo(clienteUpdate.getCorreo());
+            cliente.setEstado(clienteUpdate.getEstado());
+
+            clienteService.save(cliente);
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>("Error Cliente NO Encontrado", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error cliente No encontrado", HttpStatus.BAD_REQUEST);
         }
     }
 }

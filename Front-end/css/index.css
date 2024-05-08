@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    background-color: #f3f7fa; /* Fondo azul claro */
+}
+
+.sidebar {
+    background-color: #696969; /* Color de fondo suave para la barra lateral */
+    color: #ffffff; /* Color de texto blanco */
+    width: 15%;
+    position: fixed; /* Posición fija */
+    top: 0; /* Alineación arriba */
+    bottom: 0; /* Alineación abajo */
+    left: 0; /* Alineación izquierda */
+    overflow-y: auto; /* Añade scroll si es necesario */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.sidebar .logo {
+    padding: 2%;
+    text-align: center;
+}
+
+.sidebar .logo img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%; /* Forma circular */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+    display: block;
+    margin: 0 auto; /* Centrar la imagen */
+}
+
+.sidebar .company-name {
+    display: block;
+    font-size: 200%;
+    margin-top: 5%;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 10px;
+    border-bottom: 1px solid #ccc; /* Línea separadora más clara */
+    transition: background-color 0.3s, opacity 0.3s; /* Agrega una transición suave */
+}
+
+.sidebar ul li:hover {
+    background-color: rgba(209, 203, 196, 0.8); /* Color de fondo más oscuro al pasar el mouse */
+    opacity: 0.9; /* Opacidad al pasar el mouse */
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.sidebar ul li a {
+    color: #ffffff; /* Color de texto blanco */
+    text-decoration: none;
+    font-size: 100%;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.content {
+    flex: 1; /* La sección de contenido ocupa todo el espacio disponible */
+    display: flex; /* Usa flexbox para controlar la distribución del contenido */
+    flex-direction: column; /* Ajustar la dirección de la columna */
+    padding: 20px; /* Espaciado interno */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    width: 85%; /* Ancho del contenido */
+    margin-left: 15%; /* Margen a la izquierda para dejar espacio para la barra lateral */
+    margin-top: 5%; /* Añadir espacio del 5% arriba */
+}
+
+.filtros-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.filtro {
+    margin-right: 10px;
+}
+
+.filtro label {
+    margin-right: 10px;
+}
+
+.table {
+    margin-top: 5%; /* Añadir espacio del 5% arriba de la tabla */
+}
+
+.welcome-section {
+    background-color: #ffffff; /* Fondo blanco para la tarjeta */
+    color: #000000; /* Color de texto negro */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.3); /* Sombra */
+    max-width: 50%; /* Limita el ancho máximo al 50% del espacio disponible */
+    text-align: center; /* Centra el texto */
+}
+
+
+
+.imagen-personalizada {
+    width: 50%;
+    height: 60%;
+}
+
+.colorTabla {
+    background-color: #f3efef !important;
+    margin-top: 1%;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Añade un margen inferior */
+}
+
+.item {
+    flex-grow: 1;
+    flex-basis: calc(25.2222% - 10px); /* Calcula el ancho de cada item */
+    margin-right: 10px; 
+}
+
+.item:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último item */
+}
+
+.item input[type="text"] {
+    border: 1px solid #ccc; /* Agrega un borde alrededor del input */
+    border-radius: 5px; /* Hace que los bordes sean redondeados */
+    padding: 5px; /* Añade espacio interno */
+    width: 100%; /* Establece el ancho del input al 100% del contenedor */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+.item input[type="text"]::placeholder {
+    color: #aaa; /* Color del texto de marcador de posición */
+}
+
+.item select {
+    border: 1px solid #ccc; /* Agrega un borde alrededor del select */
+    border-radius: 5px; /* Hace que los bordes sean redondeados */
+    padding: 5px; /* Añade espacio interno */
+    width: 100%; /* Establece el ancho del select al 100% del contenedor */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+    appearance: none; /* Elimina la apariencia nativa del select */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M6 8L0 0h12z"/></svg>'); /* Agrega una flecha personalizada */
+    background-repeat: no-repeat; /* Evita que la flecha se repita */
+    background-position: right 10px center; /* Posiciona la flecha a la derecha */
+    background-size: 12px auto; /* Tamaño de la flecha */
+}
+
+
+.modal-footer {
+    flex-direction: column;
+}
+
+
+
