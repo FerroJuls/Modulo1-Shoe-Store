@@ -81,6 +81,20 @@ body {
     align-items: center; /* Centra verticalmente el contenido */
     width: 85%; /* Ancho del contenido */
     margin-left: 15%; /* Margen a la izquierda para dejar espacio para la barra lateral */
+    margin-top: 1%; /* Añadir espacio del 5% arriba */
+}
+
+
+
+.content1 {
+    flex: 1; /* La sección de contenido ocupa todo el espacio disponible */
+    display: flex; /* Usa flexbox para controlar la distribución del contenido */
+    flex-direction: column; /* Ajustar la dirección de la columna */
+    padding: 20px; /* Espaciado interno */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    width: 85%; /* Ancho del contenido */
+    margin-left: 15%; /* Margen a la izquierda para dejar espacio para la barra lateral */
     margin-top: 5%; /* Añadir espacio del 5% arriba */
 }
 

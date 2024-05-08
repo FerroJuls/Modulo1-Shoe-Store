@@ -520,7 +520,7 @@ $(document).on("click", ".editar", function () {
             document.getElementById("Telefono").value = cliente.Telefono;
             document.getElementById("Direccion").value = cliente.Direccion;
             document.getElementById("Ciudad").value = cliente.Ciudad;
-            document.getElementById("Correo").value = cliente.Ciudad;
+            document.getElementById("Correo").value = cliente.Correo;
             document.getElementById("Estado").value = cliente.estado;
             $('#exampleModal').modal('show');
         },

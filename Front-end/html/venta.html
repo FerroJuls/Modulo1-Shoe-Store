@@ -8,7 +8,15 @@
     <title>Shoe Shop</title>
     <link rel="stylesheet" href="/Front-end/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Agrega Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 </head>
 
 <body>
@@ -24,15 +32,141 @@
         </ul>
     </div>
     <div class="content">
-        <div class="welcome-section">
-            <h1>Shoe Shop</h1>
-            <h3>Pisa con elegancia, camina con confianza.</h3>
-            <img src="/Front-end/img/zapatos.avif" alt="" class="imagen-personalizada">
-            <p>"Nos enorgullece ofrecerte una experiencia de compra única donde la elegancia y la calidad se encuentran
-                en cada par de zapatos.</p>
+        <div class="container">
+            <h1>Ventas</h1>
+        </div>
+        <div class="container">
+            <div class="item" style="margin-right: 0.5%;"><label for="filtroNombre">Filtrar por cliente:</label></div>
+            <div class="item" style="margin-right: 0.5%;"><label for="filtroCiudad">Filtrar por venta - desde:</label>
+            </div>
+            <div class="item" style="margin-right: 0.7%;"><label for="filtroEstado">Filtrar por venta - hasta:</label>
+            </div>
+            <div class="item1" style="margin-right: 0.5%;"><button type="button" class="btn btn-dark"
+                    data-bs-toggle="modal" onclick="registrarVentaBandera=true; limpiar();"
+                    data-bs-target="#exampleModal">Registrar Venta.....</button></div>
+        </div>
+        <div class="container">
+            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
+                <input type="text" id="filtroNombreCliente" name="filtroNombreCliente" placeholder="Ingrese el cliente">
+            </div>
+            <div class="item" style="margin-right: 0.5%;">
+                <input type="text" id="filtroFechaDesde" name="filtroFechaDesde" placeholder="Ingrese la fecha desde" class="flatpickr-input">
+            </div>
+            <div class="item" style="margin-right: 0.5%;">
+                <input type="text" id="filtroFechaHasta" name="filtroFechaHasta" placeholder="Ingrese la fecha hasta" class="flatpickr-input">
+            </div>
+            
+            <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
+                <button type="button" class="btn btn-dark">Aplicar</button>
+            </div>
+            <div class="item1"> <!-- No necesitas margen derecho aquí -->
+                <button type="button" class="btn btn-dark">Limpiar</button>
+            </div>
+        </div>
 
+
+        <table class=" table table-hover table-striped">
+            <div class="colorTabla">
+                <tr>
+                    <th>ID</th>
+                    <th>ID Cliente</th>
+                    <th>Total</th>
+                    <th>Fecha de Venta</th>
+                    <th>Estado</th>
+                    <th class="text-center align-middle">Opciones</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2 JULIAN</td>
+                        <td>300.000</td>
+                        <td>20/08/2024</td>
+                        <td>PENDIENTE</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2 JULIAN</td>
+                        <td>300.000</td>
+                        <td>20/08/2024</td>
+                        <td>PAGADA</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2 JULIAN</td>
+                        <td>300.000</td>
+                        <td>20/08/2024</td>
+                        <td>CANCELADA</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </div>
+            <tbody id="cuerpoTabla"></tbody>
+            <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog fondomodaldialog">
+            <div class="modal-content col modal-custom">
+                <div class="modal-header">
+                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        id="X"></button>
+                    <h1 class="modal-title fs-5 col-11" id="exampleModalLabel"
+                        style="font-family: Georgia, 'Times New Roman', Times, serif; text-align: center;">
+                        Registro Venta
+                    </h1>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="centradoo">
+                            <div class="container col">
+                                <br>
+                                <form class="row table-hover needs-validation">
+
+                                    <div class="col col-xl-6 col-12 table-hover">
+                                        <label for="Cliente">Cliente</label>
+                                        <input  id="Cliente" class="form-control"
+                                            onfocusout="validarDocumentoIdentidad(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12 table-hover">
+                                        <label for="">Total</label>
+                                        <input type="text" id="Total" class="form-control"
+                                            onfocusout="validarTotal(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12">
+                                        <label for="">fechaVenta</label>
+                                        <input type="text" id="fechaVenta" class="form-control"
+                                            onfocusout="validarFechaVenta(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12">
+                                        <label for="Estado">Estado</label>
+                                        <select id="Estado" class="form-control" onfocusout="validarEstado(this)"
+                                            required>
+                                            <option value="PENDIENTE">PENDIENTE</option>
+                                            <option value="PAGADA">PAGADA</option>
+                                            <option value="CANCELADA">CANCELADA</option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-dark"
+                        onclick="registrarVenta(); limpiar();">Registrar</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="/Front-end/js/venta.js"></script>
 </body>
 
 </html>

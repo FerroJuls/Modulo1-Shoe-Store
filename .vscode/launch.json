@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ShoestoreApplication",
+            "request": "launch",
+            "mainClass": "com.shoestore.shoestore.ShoestoreApplication",
+            "projectName": "shoe-store"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ShoestoreApplication<shoestore>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
