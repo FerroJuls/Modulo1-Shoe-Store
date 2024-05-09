@@ -8,18 +8,7 @@ import jakarta.persistence.Id;
 
 @Entity(name = "cliente")
 public class cliente {
-    
-    /*id
-     * tipo de identificacion
-     * identificacion
-     * nombre
-     * apellido
-     * telefono
-     * direccion
-     * ciudad
-     * estado
-     */
-
+   
      @Id
      @GeneratedValue(strategy = GenerationType.UUID)
      @Column(name = "idCliente", nullable = false, length = 36)

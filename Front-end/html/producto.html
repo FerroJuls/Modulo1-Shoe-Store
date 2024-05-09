@@ -13,7 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -72,41 +74,6 @@
                     <th>Estado</th>
                     <th class="text-center align-middle">Opciones</th>
                 </tr>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Zapatos1</td>
-                        <td>Descripción1</td>
-                        <td>10</td>
-                        <td>100.000</td>
-                        <td>10%</td>
-                        <td>5%</td>
-                        <td>ACTIVO</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Zapatos2</td>
-                        <td>Descripción2</td>
-                        <td>10</td>
-                        <td>100.000</td>
-                        <td>10%</td>
-                        <td>5%</td>
-                        <td>ACTIVO</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Zapatos3</td>
-                        <td>Descripción3</td>
-                        <td>10</td>
-                        <td>100.000</td>
-                        <td>10%</td>
-                        <td>5%</td>
-                        <td>ACTIVO</td>
-                        <td></td>
-                    </tr>
-                </tbody>
             </div>
             <tbody id="cuerpoTabla"></tbody>
             <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
@@ -132,39 +99,39 @@
 
                                 <div class="col col-xl-6 col-12 table-hover">
                                     <label for="">Nombre</label>
-                                    <input type="number" id="nombreProducto" class="form-control" onfocusout="validarNombreProducto(this)" required>
+                                    <input type="text" id="nombreProducto" class="form-control" onfocusout="validarNombreProducto(this)" required>
                                 </div>
 
                                 <div class="col col-xl-6 col-12 table-hover">
                                     <label for="">Descripción</label>
-                                    <input type="text" id="Descripcion" class="form-control" onfocusout="validarDescripcion(this)" required>
+                                    <input type="text" id="descripcion" class="form-control" onfocusout="validarDescripcion(this)" required>
                                 </div>
 
                                 <div class="col col-xl-6 col-12">
                                     <label for="">Cantidad</label>
-                                    <input type="text" id="Cantidad" class="form-control" onfocusout="validarCantidad(this)" required>
+                                    <input type="number" id="cantidad" class="form-control" onfocusout="validarCantidad(this)" required>
                                 </div>
 
                                 <div class="col col-xl-6 col-12">
                                     <label for="">Precio</label>
-                                    <input type="text" id="Precio" class="form-control" onfocusout="validarPrecio(this)" required>
+                                    <input type="number" id="precio" class="form-control" onfocusout="validarPrecio(this)" required>
                                 </div>
 
                                 <div class="col col-xl-6 col-12">
                                     <label for="">IVA %</label>
-                                    <input type="text" id="porcentajeIva" class="form-control" onfocusout="validarPorcentajeIva(this)" required>
+                                    <input type="number" id="iva" class="form-control" onfocusout="validarIva(this)" required>
                                 </div>
 
                                 <div class="col col-xl-6 col-12">
                                     <label for="">Descuento %</label>
-                                    <input type="text" id="porcentajeDescuento" class="form-control" onfocusout="validarPorcentajeDescuento(this)" required>
+                                    <input type="number" id="descuento" class="form-control" onfocusout="validarDescuento(this)" required>
                                 </div>
 
                                 <div class="col col-xl-12 col-12">
                                     <label for="Estado">Estado</label>
-                                    <select id="Estado" class="form-control" onfocusout="validarEstado(this)" required>
-                                        <option value="ACTIVO">ACTIVO</option>
-                                        <option value="INACTIVO">INACTIVO</option>
+                                    <select id="estado" class="form-control" onfocusout="validarEstado(this)" required>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
                                     </select>
                                 </div>
                             </form>

@@ -3,7 +3,7 @@ function buscarProductoPorFiltro(filtro) {
         listarProducto(); // Mostrar todos los productos si estado es vacío
     }else{
         $.ajax({
-            url: "http://localhost:8080/api/v1/Producto/busquedafiltro/" + filtro,
+            url: "http://localhost:8080/api/v1/producto/busquedafiltro/" + filtro,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -14,12 +14,12 @@ function buscarProductoPorFiltro(filtro) {
                     trRegistro.innerHTML = `
                         <td>${result[i]["idProducto"]}</td>
                         <td class="text-center align-middle">${result[i]["nombreProducto"]}</td>
-                        <td class="text-center align-middle">${result[i]["Descripcion"]}</td>
-                        <td class="text-center align-middle">${result[i]["Cantidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Precio"]}</td>
-                        <td class="text-center align-middle">${result[i]["porcentajeIva"]}</td>
-                        <td class="text-center align-middle">${result[i]["porcentajeDescuento"]}</td>
-                        <td class="text-center align-middle">${result[i]["Estado"]}</td>producto
+                        <td class="text-center align-middle">${result[i]["descripcion"]}</td>
+                        <td class="text-center align-middle">${result[i]["cantidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["precio"]}</td>
+                        <td class="text-center align-middle">${result[i]["iva"]}</td>
+                        <td class="text-center align-middle">${result[i]["descuento"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarProductoBandera=false;" data-id="${result[i]["idProducto"]}"></i>
                             <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idProducto"]})" data-id="${result[i]["idProducto"]}"></i>
@@ -43,7 +43,7 @@ function buscarProductoPorEstado(estado) {
     } else if (estado === 'ACTIVO') {
         // Mostrar solo los productos habilitados si estado es 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/Producto/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/producto/busquedafiltroestado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -54,12 +54,12 @@ function buscarProductoPorEstado(estado) {
                     trRegistro.innerHTML = `
                         <td>${result[i]["idProducto"]}</td>
                         <td class="text-center align-middle">${result[i]["nombreProducto"]}</td>
-                        <td class="text-center align-middle">${result[i]["Descripcion"]}</td>
-                        <td class="text-center align-middle">${result[i]["Cantidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Precio"]}</td>
-                        <td class="text-center align-middle">${result[i]["porcentajeIva"]}</td>
-                        <td class="text-center align-middle">${result[i]["porcentajeDescuento"]}</td>
-                        <td class="text-center align-middle">${result[i]["Estado"]}</td>producto
+                        <td class="text-center align-middle">${result[i]["descripcion"]}</td>
+                        <td class="text-center align-middle">${result[i]["cantidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["precio"]}</td>
+                        <td class="text-center align-middle">${result[i]["iva"]}</td>
+                        <td class="text-center align-middle">${result[i]["descuento"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarProductoBandera=false;" data-id="${result[i]["idProducto"]}"></i>
                             <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idProducto"]})" data-id="${result[i]["idProducto"]}"></i>
@@ -76,7 +76,7 @@ function buscarProductoPorEstado(estado) {
     } else {
         // Mostrar solo los productos deshabilitados si no es vacío ni 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/Producto/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/producto/busquedafiltroestado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -87,12 +87,12 @@ function buscarProductoPorEstado(estado) {
                     trRegistro.innerHTML = `
                         <td>${result[i]["idProducto"]}</td>
                         <td class="text-center align-middle">${result[i]["nombreProducto"]}</td>
-                        <td class="text-center align-middle">${result[i]["Descripcion"]}</td>
-                        <td class="text-center align-middle">${result[i]["Cantidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["Precio"]}</td>
-                        <td class="text-center align-middle">${result[i]["porcentajeIva"]}</td>
-                        <td class="text-center align-middle">${result[i]["porcentajeDescuento"]}</td>
-                        <td class="text-center align-middle">${result[i]["Estado"]}</td>producto
+                        <td class="text-center align-middle">${result[i]["descripcion"]}</td>
+                        <td class="text-center align-middle">${result[i]["cantidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["precio"]}</td>
+                        <td class="text-center align-middle">${result[i]["iva"]}</td>
+                        <td class="text-center align-middle">${result[i]["descuento"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarProductoBandera=false;" data-id="${result[i]["idProducto"]}"></i>
                             <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idProducto"]})" data-id="${result[i]["idProducto"]}"></i>
@@ -115,7 +115,7 @@ function buscarProductoPorEstado(estado) {
 
 
 // URL de la API
-var url = "http://localhost:8080/api/v1/Producto/";
+var url = "http://localhost:8080/api/v1/producto/";
 
 // Función para listar los productos
 function listarProducto() {
@@ -131,12 +131,12 @@ function listarProducto() {
                 trRegistro.innerHTML = `
                     <td>${result[i]["idProducto"]}</td>
                     <td class="text-center align-middle">${result[i]["nombreProducto"]}</td>
-                    <td class="text-center align-middle">${result[i]["Descripcion"]}</td>
-                    <td class="text-center align-middle">${result[i]["Cantidad"]}</td>
-                    <td class="text-center align-middle">${result[i]["Precio"]}</td>
-                    <td class="text-center align-middle">${result[i]["porcentajeIva"]}</td>
-                    <td class="text-center align-middle">${result[i]["porcentajeDescuento"]}</td>
-                    <td class="text-center align-middle">${result[i]["Estado"]}</td>producto
+                    <td class="text-center align-middle">${result[i]["descripcion"]}</td>
+                    <td class="text-center align-middle">${result[i]["cantidad"]}</td>
+                    <td class="text-center align-middle">${result[i]["precio"]}</td>
+                    <td class="text-center align-middle">${result[i]["iva"]}</td>
+                    <td class="text-center align-middle">${result[i]["descuento"]}</td>
+                    <td class="text-center align-middle">${result[i]["estado"]}</td>
                     <td class="text-center align-middle">
                         <i class="fas fa-edit editar"  onclick="registrarProductoBandera=false;" data-id="${result[i]["idProducto"]}"></i>
                         <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idProducto"]})" data-id="${result[i]["idProducto"]}"></i>
@@ -157,21 +157,21 @@ var registrarProductoBandera = true;
 // Función para registrar un cliente
 function registrarProducto() {
     var nombreProducto = document.getElementById("nombreProducto");
-    var Descripcion = document.getElementById("Descripcion");
-    var Cantidad = document.getElementById("Cantidad");
-    var Precio = document.getElementById("Precio");
-    var porcentajeIva = document.getElementById("porcentajeIva");
-    var porcentajeDescuento = document.getElementById("porcentajeDescuento");
-    var Estado = document.getElementById("Estado");
+    var descripcion = document.getElementById("descripcion");
+    var cantidad = document.getElementById("cantidad");
+    var precio = document.getElementById("precio");
+    var iva = document.getElementById("iva");
+    var descuento = document.getElementById("descuento");
+    var estado = document.getElementById("estado");
 
     // Verificar si algún campo obligatorio está vacío
     if (!validarNombreProducto(nombreProducto) ||
-        !validarDescripcion(Descripcion) ||
-        !validarCantidad(Cantidad) ||
-        !validarPrecio(Precio) ||
-        !validarPorcentajeIva(porcentajeIva) ||
-        !validarPorcentajeDescuento(porcentajeDescuento) ||
-        !validarEstado(Estado)) {
+        !validarDescripcion(descripcion) ||
+        !validarCantidad(cantidad) ||
+        !validarPrecio(precio) ||
+        !validarIva(iva) ||
+        !validarDescuento(descuento) ||
+        !validarEstado(estado)) {
         // Mostrar una alerta indicando que todos los campos son obligatorios
         Swal.fire({
             title: "¡Error!",
@@ -183,12 +183,12 @@ function registrarProducto() {
 
     var forData = {
         "nombreProducto": nombreProducto.value,
-        "Descripcion": Descripcion.value,
-        "Cantidad": Cantidad.value,
-        "Precio": Precio.value,
-        "porcentajeIva": porcentajeIva.value,
-        "porcentajeDescuento": porcentajeDescuento.value,
-        "Estado": Estado.value,
+        "descripcion": descripcion.value,
+        "cantidad": cantidad.value,
+        "precio": precio.value,
+        "iva": iva.value,
+        "descuento": descuento.value,
+        "estado": estado.value,
     };
 
     var metodo = "";
@@ -258,7 +258,7 @@ function validarNombreProducto(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 5 || valor.length > 11) {
+    if (valor.length < 1 || valor.length > 46) {
         valido = false;
     }
 
@@ -273,8 +273,8 @@ function validarNombreProducto(cuadroNumero) {
 
 // Función Descripcion
 function validarCampos() {
-    var Descripcion = document.getElementById("Descripcion");
-    return validarDescripcion(Descripcion);
+    var descripcion = document.getElementById("descripcion");
+    return validarDescripcion(descripcion);
 }
 
 // Función para validar Descripcion
@@ -282,7 +282,7 @@ function validarDescripcion(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 5 || valor.length > 11) {
+    if (valor.length < 1 || valor.length > 45) {
         valido = false;
     }
 
@@ -299,15 +299,15 @@ function validarDescripcion(cuadroNumero) {
 // Función Cantidad
 
 function validarCamposCantidad() {
-    var Cantidad = document.getElementById("Cantidad");
-    return validarCantidad(Cantidad);
+    var cantidad = document.getElementById("cantidad");
+    return validarCantidad(cantidad);
 }
 
 function validarCantidad(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 11) {
+    if (valor.length < 1 || valor.length > 100) {
         valido = false;
     }
 
@@ -323,15 +323,15 @@ function validarCantidad(cuadroNumero) {
 // Función Precio
 
 function validarCamposPrecio() {
-    var Precio = document.getElementById("Precio");
-    return validarPrecio(Precio);
+    var precio = document.getElementById("precio");
+    return validarPrecio(precio);
 }
 
 function validarPrecio(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 11) {
+    if (valor.length < 1 || valor.length > 1000) {
         valido = false;
     }
 
@@ -344,18 +344,18 @@ function validarPrecio(cuadroNumero) {
     return valido;
 }
 
-// Función porcentajeIva
+// Función iva
 
-function validarCamposporcentajeIva() {
-    var porcentajeIva = document.getElementById("porcentajeIva");
-    return validarPorcentajeIva(porcentajeIva);
+function validarCamposIva() {
+    var iva = document.getElementById("iva");
+    return validarIva(iva);
 }
 
-function validarPorcentajeIva(cuadroNumero) {
+function validarIva(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (valor.length < 1 || valor.length > 100) {
         valido = false;
     }
 
@@ -368,18 +368,18 @@ function validarPorcentajeIva(cuadroNumero) {
     return valido;
 }
 
-// Función porcentajeDescuento
+// Función descuento
 
-function validarCamposporcentajeDescuento() {
-    var porcentajeDescuento = document.getElementById("porcentajeDescuento");
-    return validarPorcentajeDescuento(porcentajeDescuento);
+function validarCamposDescuento() {
+    var descuento = document.getElementById("descuento");
+    return validarDescuento(descuento);
 }
 
-function validarPorcentajeDescuento(cuadroNumero) {
+function validarDescuento(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 155) {
+    if (valor.length < 1 || valor.length > 100) {
         valido = false;
     }
 
@@ -392,18 +392,18 @@ function validarPorcentajeDescuento(cuadroNumero) {
     return valido;
 }
 
-// Función Estado
+// Función estado
 
 function validarCamposEstado() {
-    var Estado = document.getElementById("Estado");
-    return validarEstado(Estado);
+    var estado = document.getElementById("estado");
+    return validarEstado(estado);
 }
 
 function validarEstado(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (valor.length < 1 || valor.length > 9) {
         valido = false;
     }
 
@@ -423,18 +423,18 @@ function validarEstado(cuadroNumero) {
 function limpiar() {
     document.getElementById("nombreProducto").value = "";
     document.getElementById("nombreProducto").className = "form-control";
-    document.getElementById("Descripcion").value = "";
-    document.getElementById("Descripcion").className = "form-control";
-    document.getElementById("Cantidad").value = "";
-    document.getElementById("Cantidad").className = "form-control";
-    document.getElementById("Precio").value = "";
-    document.getElementById("Precio").className = "form-control";
-    document.getElementById("porcentajeIva").value = "";
-    document.getElementById("porcentajeIva").className = "form-control";
-    document.getElementById("porcentajeDescuento").value = "";
-    document.getElementById("porcentajeDescuento").className = "form-control";
-    document.getElementById("Estado").value = "";
-    document.getElementById("Estado").className = "form-control";
+    document.getElementById("descripcion").value = "";
+    document.getElementById("descripcion").className = "form-control";
+    document.getElementById("cantidad").value = "";
+    document.getElementById("cantidad").className = "form-control";
+    document.getElementById("precio").value = "";
+    document.getElementById("precio").className = "form-control";
+    document.getElementById("iva").value = "";
+    document.getElementById("iva").className = "form-control";
+    document.getElementById("descuento").value = "";
+    document.getElementById("descuento").className = "form-control";
+    document.getElementById("estado").value = "";
+    document.getElementById("estado").className = "form-control";
 }
 
 var idProducto = "";
@@ -448,12 +448,12 @@ $(document).on("click", ".editar", function () {
         type: "GET",
         success: function (producto) {
             document.getElementById("nombreProducto").value = producto.nombreProducto;
-            document.getElementById("Descripcion").value = producto.Descripcion;
-            document.getElementById("Cantidad").value = producto.Cantidad;
-            document.getElementById("Precio").value = producto.Precio;
-            document.getElementById("porcentajeIva").value = producto.porcentajeIva;
-            document.getElementById("porcentajeDescuento").value = producto.porcentajeDescuento;
-            document.getElementById("Estado").value = producto.estado;
+            document.getElementById("descripcion").value = producto.descripcion;
+            document.getElementById("cantidad").value = producto.cantidad;
+            document.getElementById("precio").value = producto.precio;
+            document.getElementById("iva").value = producto.iva;
+            document.getElementById("descuento").value = producto.descuento;
+            document.getElementById("estado").value = producto.estado;
             $('#exampleModal').modal('show');
         },
         error: function (error) {

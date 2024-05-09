@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shoestore.shoestore.interfaceService.IproductoService;
 import com.shoestore.shoestore.models.producto;
 
-@RequestMapping("/api/v1/producto")
+@RequestMapping("/api/v1/producto/")
 @RestController
 public class productoController {
     
@@ -25,50 +25,40 @@ public class productoController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@ModelAttribute("producto") producto producto) {
-        var listaProducto = productoService.findAll()
-                .stream().filter(Producto -> Producto.getNombreProducto()
-                        .equals(producto.getNombreProducto()));
-
-        if (listaProducto.count() != 0) {
-            return new ResponseEntity<>("Este producto ya existe", HttpStatus.BAD_REQUEST);
-        }
-
-        // verificar que el campo documento de identidad sea diferente vacio
-        // Añadir campos obligatorios
 
         if (producto.getNombreProducto().equals("")) {
 
-            return new ResponseEntity<>("El nombre del producto es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo nombre del producto es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (producto.getDescripcion().equals("")) {
 
-            return new ResponseEntity<>("La descripcion del producto es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo descripcion del producto es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (producto.getCantidad().equals("")) {
 
-            return new ResponseEntity<>("La cantidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo cantidad es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (producto.getPrecio().equals("")) {
 
-            return new ResponseEntity<>("El precio es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo precio es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (producto.getIVA().equals("")) {
+        if (producto.getIva().equals("")) {
 
-            return new ResponseEntity<>("El IVA es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo IVA es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (producto.getDescuento().equals("")) {
 
-            return new ResponseEntity<>("El descuento es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo descuento es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (producto.getEstado().equals("")) {
 
-            return new ResponseEntity<>("El estado es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo estado es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
 
@@ -123,7 +113,7 @@ public class productoController {
             producto.setDescripcion(productoUpdate.getDescripcion());
             producto.setCantidad(productoUpdate.getCantidad());
             producto.setPrecio(productoUpdate.getPrecio());
-            producto.setIVA(productoUpdate.getIVA());
+            producto.setIva(productoUpdate.getIva());
             producto.setDescuento(productoUpdate.getDescuento());
             producto.setEstado(productoUpdate.getEstado());
 

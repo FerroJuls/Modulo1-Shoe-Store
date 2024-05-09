@@ -69,38 +69,12 @@
             <div class="colorTabla">
                 <tr>
                     <th>ID</th>
-                    <th>ID Cliente</th>
+                    <th>Cliente</th>
                     <th>Total</th>
                     <th>Fecha de Venta</th>
                     <th>Estado</th>
                     <th class="text-center align-middle">Opciones</th>
                 </tr>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2 JULIAN</td>
-                        <td>300.000</td>
-                        <td>20/08/2024</td>
-                        <td>PENDIENTE</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2 JULIAN</td>
-                        <td>300.000</td>
-                        <td>20/08/2024</td>
-                        <td>PAGADA</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2 JULIAN</td>
-                        <td>300.000</td>
-                        <td>20/08/2024</td>
-                        <td>CANCELADA</td>
-                        <td></td>
-                    </tr>
-                </tbody>
             </div>
             <tbody id="cuerpoTabla"></tbody>
             <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
@@ -127,13 +101,13 @@
 
                                     <div class="col col-xl-6 col-12 table-hover">
                                         <label for="Cliente">Cliente</label>
-                                        <input  id="Cliente" class="form-control"
+                                        <input  id="cliente" class="form-control"
                                             onfocusout="validarDocumentoIdentidad(this)" required>
                                     </div>
 
                                     <div class="col col-xl-6 col-12 table-hover">
                                         <label for="">Total</label>
-                                        <input type="text" id="Total" class="form-control"
+                                        <input type="text" id="total" class="form-control"
                                             onfocusout="validarTotal(this)" required>
                                     </div>
 
@@ -145,11 +119,12 @@
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="Estado">Estado</label>
-                                        <select id="Estado" class="form-control" onfocusout="validarEstado(this)"
+                                        <select id="estado" class="form-control" onfocusout="validarEstado(this)"
                                             required>
-                                            <option value="PENDIENTE">PENDIENTE</option>
-                                            <option value="PAGADA">PAGADA</option>
-                                            <option value="CANCELADA">CANCELADA</option>
+                                            <option value="Pendiente">Pendiente</option>
+                                            <option value="Pagada">Pagada</option>
+                                            <option value="Cancelada">Cancelada</option>                                            
+                                            <option value="Borrador">Borrador</option>
                                         </select>
                                     </div>
                                 </form>

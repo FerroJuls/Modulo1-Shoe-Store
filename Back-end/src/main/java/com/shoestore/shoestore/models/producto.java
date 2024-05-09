@@ -9,54 +9,44 @@ import jakarta.persistence.Id;
 @Entity(name = "producto")
 public class producto {
 
-    /*
-     * id
-     * nombre Producto
-     * descripcion
-     * cantidad
-     * precio
-     * iva
-     * descuento
-     * estado
-     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "idProducto", nullable = false, length = 36)
     private String idProducto;
 
-    @Column(name = "nombreProducto", nullable = false, length = 800)
+    @Column(name = "nombreProducto", nullable = false, length = 45)
     private String nombreProducto;
 
-    @Column(name = "descripcion", nullable = false, length = 800)
+    @Column(name = "descripcion", nullable = false, length = 45)
     private String descripcion;
 
-    @Column(name = "cantidad", nullable = false, length = 50)
+    @Column(name = "cantidad", nullable = false, length = 1000)
     private String cantidad;
 
     @Column(name = "precio", nullable = false, length = 50)
     private String precio;
 
-    @Column(name = "IVA", nullable = false, length = 50)
-    private String IVA;
+    @Column(name = "iva", nullable = false, length = 2)
+    private String iva;
 
-    @Column(name = "descuento", nullable = false, length = 50)
+    @Column(name = "descuento", nullable = false, length = 2)
     private String descuento;
 
-    @Column(name = "estado", nullable = false, length = 11)
+    @Column(name = "estado", nullable = false, length = 9)
     private String estado;
 
     public producto() {
     }
 
     public producto(String idProducto, String nombreProducto, String descripcion, String cantidad, String precio,
-            String iVA, String descuento, String estado) {
+            String iva, String descuento, String estado) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.precio = precio;
-        IVA = iVA;
+        this.iva = iva;
         this.descuento = descuento;
         this.estado = estado;
     }
@@ -101,6 +91,14 @@ public class producto {
         this.precio = precio;
     }
 
+    public String getIva() {
+        return iva;
+    }
+
+    public void setIva(String iva) {
+        this.iva = iva;
+    }
+
     public String getDescuento() {
         return descuento;
     }
@@ -117,12 +115,6 @@ public class producto {
         this.estado = estado;
     }
 
-    public String getIVA() {
-        return IVA;
-    }
-
-    public void setIVA(String iVA) {
-        IVA = iVA;
-    }
-
+    
+    
 }

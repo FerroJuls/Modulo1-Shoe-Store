@@ -32,52 +32,49 @@ public class clienteController {
             return new ResponseEntity<>("Este cliente ya existe", HttpStatus.BAD_REQUEST);
         }
 
-        // verificar que el campo documento de identidad sea diferente vacio
-        // Añadir campos obligatorios
-
         if (cliente.getTipoDocumento().equals("")) {
 
-            return new ResponseEntity<>("El tipo de documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo tipo de documento es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getNumeroDocumento().equals("")) {
 
-            return new ResponseEntity<>("El documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo documento es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getNombre().equals("")) {
 
-            return new ResponseEntity<>("El nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo nombre es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getApellido().equals("")) {
 
-            return new ResponseEntity<>("El apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo apellido es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getTelefono().equals("")) {
 
-            return new ResponseEntity<>("El numero de teléfono es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo número de teléfono es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getDireccion().equals("")) {
 
-            return new ResponseEntity<>("La dirección es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo dirección es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getCiudad().equals("")) {
 
-            return new ResponseEntity<>("La ciudad es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo ciudad es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getCorreo().equals("")) {
 
-            return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo correo es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (cliente.getEstado().equals("")) {
 
-            return new ResponseEntity<>("El estado es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo estado es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         clienteService.save(cliente);
