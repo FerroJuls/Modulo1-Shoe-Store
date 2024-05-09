@@ -1,11 +1,3 @@
-
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('.flatpickr-input', {
-        dateFormat: 'Y-m-d' // Formato de fecha (opcional)
-        // Otras opciones de configuración aquí
-    });
-});
-
 function buscarVentaPorFiltro(filtro) {
     if (filtro === '') {
         listarVenta(); // Mostrar todos los médicos si estado es vacío
@@ -20,14 +12,12 @@ function buscarVentaPorFiltro(filtro) {
                     var trRegistro = document.createElement("tr");
                     trRegistro.innerHTML = `
                     <td>${result[i]["idVenta"]}</td>
-                    <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["Cliente"]["Apellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["cliente"]["apellido"]}</td>
                     <td class="text-center align-middle">${result[i]["total"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
                     <td class="text-center align-middle">${result[i]["estado"]}</td>
                     <td class="text-center align-middle">
-                    <i class="fas fa-edit editar"  onclick="registrarIngresoBandera=false;" data-id="${result[i]["idVenta"]}"></i>
-                    <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idVenta"]}"></i>
-                    <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idVenta"]}"></i>
+                    <button type="button" class="btn btn-secondary">Ver Detalle</button>
                     </td>
                 `;
                     cuerpoTabla.appendChild(trRegistro);
@@ -49,11 +39,11 @@ $(document).ready(function () {
 // Función para cargar la lista de pacientes activos
 function cargarClienteActivos() {
     $.ajax({
-        url: "http://localhost:8080/api/v1/cliente/busquedafiltroestado/ACTIVO",
+        url: "http://localhost:8080/api/v1/cliente/busquedaEstado/Activo",
         type: "GET",
         success: function (result) {
             result.forEach(function (cliente) {
-                $("#cliente").append(`<option value="${cliente.idVenta}">${cliente.numeroDocumento}-${cliente.nombre} ${cliente.apellido}</option>`);
+                $("#cliente").append(`<option value="${cliente.idCliente}">${cliente.numeroDocumento}-${cliente.nombre} ${cliente.apellido}</option>`);
             });
         },
         error: function (error) {
@@ -82,14 +72,12 @@ function listarVenta() {
                 var trRegistro = document.createElement("tr");
                 trRegistro.innerHTML = `
                 <td>${result[i]["idVenta"]}</td>
-                <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["Cliente"]["Apellido"]}</td>
+                <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["cliente"]["apellido"]}</td>
                 <td class="text-center align-middle">${result[i]["total"]}</td>
                 <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
                 <td class="text-center align-middle">${result[i]["estado"]}</td>
                 <td class="text-center align-middle">
-                <i class="fas fa-edit editar"  onclick="registrarIngresoBandera=false;" data-id="${result[i]["idVenta"]}"></i>
-                <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idVenta"]}"></i>
-                <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idVenta"]}"></i>
+                <button type="button" class="btn btn-secondary">Ver Detalle</button>
                 </td>
             `;
                 cuerpoTabla.appendChild(trRegistro);
@@ -103,7 +91,7 @@ function listarVenta() {
 
 var registrarIngresoBandera = true;
 //se almacenan los valores
-function registrarIngreso() {
+function registrarVenta() {
     var cliente = document.getElementById("cliente");
     var total = document.getElementById("total");
     var fechaVenta = document.getElementById("fechaVenta");
@@ -237,7 +225,7 @@ function validarFechaVenta(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 155) {
+    if (valor.length < 0 || valor.length > 155) {
         valido = false;
     }
 
@@ -375,3 +363,26 @@ function actualizarlistarVenta() {
     listarVenta();
 }
 
+$(document).ready(function () {
+    $('#fechaVenta').datepicker({
+        format: 'yyyy-mm-dd', // Formato de fecha
+        autoclose: true, // Cierra el datepicker cuando se selecciona una fecha
+        todayHighlight: true // Resalta la fecha actual
+    });
+});
+
+$(document).ready(function () {
+    $('#filtroFechaDesde').datepicker({
+        format: 'yyyy-mm-dd', // Formato de fecha
+        autoclose: true, // Cierra el datepicker cuando se selecciona una fecha
+        todayHighlight: true // Resalta la fecha actual
+    });
+});
+
+$(document).ready(function () {
+    $('#filtroFechaHasta').datepicker({
+        format: 'yyyy-mm-dd', // Formato de fecha
+        autoclose: true, // Cierra el datepicker cuando se selecciona una fecha
+        todayHighlight: true // Resalta la fecha actual
+    });
+});

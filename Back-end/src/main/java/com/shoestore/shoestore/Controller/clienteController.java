@@ -93,6 +93,12 @@ public class clienteController {
         return new ResponseEntity<>(listaCliente, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedaEstado/{estado}")
+    public ResponseEntity<Object> findEstado(@PathVariable String estado){
+        var listaCliente = clienteService.filtroEstado(estado);
+        return new ResponseEntity<>(listaCliente, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
         var cliente = clienteService.findOne(id).get();

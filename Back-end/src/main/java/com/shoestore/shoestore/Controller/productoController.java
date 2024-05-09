@@ -78,6 +78,12 @@ public class productoController {
         return new ResponseEntity<>(listaProducto, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedaEstado/{estado}")
+    public ResponseEntity<Object> findEstado(@PathVariable String estado){
+        var listaProducto = productoService.filtroEstado(estado);
+        return new ResponseEntity<>(listaProducto, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
         var producto = productoService.findOne(id).get();

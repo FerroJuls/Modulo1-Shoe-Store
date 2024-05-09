@@ -35,6 +35,12 @@ public class clienteService implements IclienteService {
     }
 
     @Override
+    public List<cliente>filtroEstado(String estado) {
+        List<cliente> listaCliente = data.filtroEstado(estado);
+        return listaCliente;
+    }
+
+    @Override
     public Optional<cliente> findOne(String id) {
         Optional<cliente> cliente = data.findById(id);
         return cliente;

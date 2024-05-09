@@ -11,6 +11,9 @@ import com.shoestore.shoestore.models.producto;
 @Repository
 public interface Iproducto extends CrudRepository<producto, String> {
     
-    @Query("SELECT p FROM producto p WHERE p.nombreProducto LIKE %?1% OR p.estado LIKE %?1%")
+    @Query("SELECT p FROM producto p WHERE p.nombreProducto LIKE %?1%")
     List<producto> filtroProducto(String filtro);
+
+    @Query("SELECT p FROM producto p WHERE p.estado LIKE %?1% ")
+    List<producto> filtroEstado (String estado);
 }

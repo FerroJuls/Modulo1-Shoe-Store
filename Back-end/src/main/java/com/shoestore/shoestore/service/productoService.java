@@ -35,6 +35,12 @@ public class productoService implements IproductoService {
     }
 
     @Override
+    public List<producto>filtroEstado(String estado) {
+        List<producto> listaProducto = data.filtroEstado(estado);
+        return listaProducto;
+    }
+
+    @Override
     public Optional<producto> findOne(String id) {
         Optional<producto> producto = data.findById(id);
         return producto;

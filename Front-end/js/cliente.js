@@ -24,7 +24,7 @@ function buscarClientePorFiltro(filtro) {
                         <td class="text-center align-middle">${result[i]["estado"]}</td>cliente
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
@@ -45,7 +45,7 @@ function buscarClientePorEstado(estado) {
     } else if (estado === 'Activo') {
         // Mostrar solo los Clientes habilitados si estado es 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/cliente/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/cliente/busquedaEstado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -66,7 +66,7 @@ function buscarClientePorEstado(estado) {
                         <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
@@ -101,7 +101,7 @@ function buscarClientePorEstado(estado) {
                         <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
@@ -147,7 +147,7 @@ function listarCliente() {
                     <td class="text-center align-middle">${result[i]["estado"]}</td>
                     <td class="text-center align-middle">
                         <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
-                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado('${result[i]["idCliente"]}')" data-id="${result[i]["idCliente"]}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
                         <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                     </td>
                 `;

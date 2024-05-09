@@ -13,6 +13,8 @@ public interface IproductoService {
 
     public List<producto> filtroProducto(String filtro);
 
+    public List<producto> filtroEstado (String estado);
+
     public Optional<producto> findOne(String id);
 
     public int deleteForever(String id);

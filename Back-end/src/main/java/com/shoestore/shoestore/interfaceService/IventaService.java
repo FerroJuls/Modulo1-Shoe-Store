@@ -14,6 +14,8 @@ public interface IventaService {
 
     public List<venta> filtroVenta(String filtro);
 
+    public List<venta> filtroEstado (String estado);
+
     public Optional<venta> findOne(String id);
 
     public int deleteForever(String id);

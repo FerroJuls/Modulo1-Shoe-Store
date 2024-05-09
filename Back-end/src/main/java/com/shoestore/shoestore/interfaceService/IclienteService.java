@@ -15,5 +15,7 @@ public interface IclienteService {
 
     public Optional<cliente> findOne(String id);
 
+    public List<cliente> filtroEstado (String estado);
+
     public int deleteForever(String id);
 }

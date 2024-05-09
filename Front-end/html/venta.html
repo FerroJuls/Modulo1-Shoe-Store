@@ -14,8 +14,11 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    
+
 
 </head>
 
@@ -50,12 +53,14 @@
                 <input type="text" id="filtroNombreCliente" name="filtroNombreCliente" placeholder="Ingrese el cliente">
             </div>
             <div class="item" style="margin-right: 0.5%;">
-                <input type="text" id="filtroFechaDesde" name="filtroFechaDesde" placeholder="Ingrese la fecha desde" class="flatpickr-input">
+                <input type="text" id="filtroFechaDesde" name="filtroFechaDesde" placeholder="Ingrese la fecha desde"
+                    class="flatpickr-input">
             </div>
             <div class="item" style="margin-right: 0.5%;">
-                <input type="text" id="filtroFechaHasta" name="filtroFechaHasta" placeholder="Ingrese la fecha hasta" class="flatpickr-input">
+                <input type="text" id="filtroFechaHasta" name="filtroFechaHasta" placeholder="Ingrese la fecha hasta"
+                    class="flatpickr-input">
             </div>
-            
+
             <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
                 <button type="button" class="btn btn-dark">Aplicar</button>
             </div>
@@ -69,10 +74,10 @@
             <div class="colorTabla">
                 <tr>
                     <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Total</th>
-                    <th>Fecha de Venta</th>
-                    <th>Estado</th>
+                    <th class="text-center align-middle">Cliente</th>
+                    <th class="text-center align-middle">Total</th>
+                    <th class="text-center align-middle">Fecha de Venta</th>
+                    <th class="text-center align-middle">Estado</th>
                     <th class="text-center align-middle">Opciones</th>
                 </tr>
             </div>
@@ -100,9 +105,11 @@
                                 <form class="row table-hover needs-validation">
 
                                     <div class="col col-xl-6 col-12 table-hover">
-                                        <label for="Cliente">Cliente</label>
-                                        <input  id="cliente" class="form-control"
-                                            onfocusout="validarDocumentoIdentidad(this)" required>
+                                        <label for="cliente">Cliente</label>
+                                        <select id="cliente" class="form-control" onfocusout="validarCliente(this)"
+                                            required>
+                                            <!-- Las opciones de paciente se cargarán dinámicamente aquí -->
+                                        </select>
                                     </div>
 
                                     <div class="col col-xl-6 col-12 table-hover">
@@ -112,10 +119,10 @@
                                     </div>
 
                                     <div class="col col-xl-6 col-12">
-                                        <label for="">fechaVenta</label>
-                                        <input type="text" id="fechaVenta" class="form-control"
-                                            onfocusout="validarFechaVenta(this)" required>
+                                        <label for="fechaVenta">Fecha de Venta</label>
+                                        <input type="text" id="fechaVenta" class="form-control" onfocusout="validarFechaVenta(this)" required>
                                     </div>
+                                    
 
                                     <div class="col col-xl-6 col-12">
                                         <label for="Estado">Estado</label>
@@ -123,7 +130,7 @@
                                             required>
                                             <option value="Pendiente">Pendiente</option>
                                             <option value="Pagada">Pagada</option>
-                                            <option value="Cancelada">Cancelada</option>                                            
+                                            <option value="Cancelada">Cancelada</option>
                                             <option value="Borrador">Borrador</option>
                                         </select>
                                     </div>
@@ -134,8 +141,7 @@
                     </div>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button" class="btn btn-dark"
-                        onclick="registrarVenta(); limpiar();">Registrar</button>
+                    <button type="button" class="btn btn-dark" onclick="registrarVenta(); limpiar();">Registrar</button>
                 </div>
             </div>
         </div>

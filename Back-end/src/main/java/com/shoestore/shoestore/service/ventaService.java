@@ -35,6 +35,12 @@ public class ventaService implements IventaService{
     }
 
     @Override
+    public List<venta>filtroEstado(String estado) {
+        List<venta> listaIngreso = data.filtroEstado(estado);
+        return listaIngreso;
+    }
+
+    @Override
     public Optional<venta> findOne(String id){
         Optional<venta> venta = data.findById(id);
         return venta;

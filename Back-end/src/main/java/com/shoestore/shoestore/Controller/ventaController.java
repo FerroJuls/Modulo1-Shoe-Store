@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shoestore.shoestore.interfaceService.IventaService;
 import com.shoestore.shoestore.models.venta;
 
-@RequestMapping("/api/v1/venta")
+@RequestMapping("/api/v1/venta/")
 @RestController
 public class ventaController {
     
@@ -54,6 +54,13 @@ public class ventaController {
         @GetMapping("/busquedafiltro/{filtro}")
     public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
         var listaVenta = ventaService.filtroVenta(filtro);
+        return new ResponseEntity<>(listaVenta, HttpStatus.OK);
+    }
+    
+
+    @GetMapping("/busquedaEstado/{estado}")
+    public ResponseEntity<Object> findEstado(@PathVariable String estado){
+        var listaVenta = ventaService.filtroEstado(estado);
         return new ResponseEntity<>(listaVenta, HttpStatus.OK);
     }
 
