@@ -80,7 +80,7 @@ function buscarClientePorEstado(estado) {
     } else {
         // Mostrar solo los Clientes deshabilitados si no es vacío ni 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/cliente/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/cliente/busquedaEstado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");

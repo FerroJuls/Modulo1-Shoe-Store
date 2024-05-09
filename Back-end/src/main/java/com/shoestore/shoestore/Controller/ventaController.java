@@ -64,24 +64,6 @@ public class ventaController {
         return new ResponseEntity<>(listaVenta, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable String id) {
-        var venta = ventaService.findOne(id).get();
-
-        if (venta != null) {
-            if (venta.getEstado().equals("Activo")) {
-
-                venta.setEstado("Inactivo");
-                ventaService.save(venta);
-                return new ResponseEntity<>("Se ha inactivado correctamente", HttpStatus.OK);
-            } else
-            venta.setEstado("Activo");
-            ventaService.save(venta);
-            return new ResponseEntity<>("Se ha activado correctamente", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
-        }
-    }
 
     @DeleteMapping("/eliminarPermanente/{id}")
     public ResponseEntity<Object> deleteForever(@PathVariable String id) {

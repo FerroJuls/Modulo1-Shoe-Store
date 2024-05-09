@@ -29,6 +29,7 @@
             <span class="company-name">Shoe Shop</span>
         </div>
         <ul>
+            <li><a href="/Front-end/html/panel.html"><i class="fas fa-info-circle"></i>Información</a></li>
             <li><a href="/Front-end/html/cliente.html"><i class="fas fa-user"></i> Cliente</a></li>
             <li><a href="/Front-end/html/producto.html"><i class="fas fa-box"></i> Producto</a></li>
             <li><a href="/Front-end/html/venta.html"><i class="fas fa-shopping-cart"></i> Venta</a></li>
@@ -44,6 +45,8 @@
             </div>
             <div class="item" style="margin-right: 0.7%;"><label for="filtroEstado">Filtrar por venta - hasta:</label>
             </div>
+            
+            <div class="item" style="margin-right: 0.9%;"><label for="filtroEstado">Filtrar por estado:</label></div>
             <div class="item1" style="margin-right: 0.5%;"><button type="button" class="btn btn-dark"
                     data-bs-toggle="modal" onclick="registrarVentaBandera=true; limpiar();"
                     data-bs-target="#exampleModal">Registrar Venta.....</button></div>
@@ -60,12 +63,21 @@
                 <input type="text" id="filtroFechaHasta" name="filtroFechaHasta" placeholder="Ingrese la fecha hasta"
                     class="flatpickr-input">
             </div>
+            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
+                <select id="filtroEstado" name="filtroEstado" onchange="buscarVentaPorEstado(this.value)">
+                    <option value="">Todos</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Pagada">Pagada</option>
+                    <option value="Cancelada">Cancelada</option>
+                    <option value="Borrador">Borrador</option>
+                </select>
+            </div>
 
             <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
                 <button type="button" class="btn btn-dark">Aplicar</button>
             </div>
             <div class="item1"> <!-- No necesitas margen derecho aquí -->
-                <button type="button" class="btn btn-dark">Limpiar</button>
+                <button type="button" class="btn btn-dark" onclick="listarVenta()">Limpiar</button>
             </div>
         </div>
 

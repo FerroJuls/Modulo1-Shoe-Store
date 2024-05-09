@@ -25,6 +25,7 @@
             <span class="company-name">Shoe Shop</span>
         </div>
         <ul>
+            <li><a href="/Front-end/html/panel.html"><i class="fas fa-info-circle"></i>Información</a></li>
             <li><a href="/Front-end/html/cliente.html"><i class="fas fa-user"></i> Cliente</a></li>
             <li><a href="/Front-end/html/producto.html"><i class="fas fa-box"></i> Producto</a></li>
             <li><a href="/Front-end/html/venta.html"><i class="fas fa-shopping-cart"></i> Venta</a></li>
@@ -46,17 +47,17 @@
                 <input type="text" id="filtroNombre" name="filtroNombre" placeholder="Ingrese el nombre">
             </div>
             <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <select id="filtroEstado" name="filtroEstado">
-                    <option value="">TODOS</option>
-                    <option value="ACTIVO">ACTIVO</option>
-                    <option value="INACTIVO">INACTIVO</option>
+                <select id="filtroEstado" name="filtroEstado" onchange="buscarProductoPorEstado(this.value)">
+                    <option value="">Todos</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
                 </select>
             </div>
             <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
                 <button type="button" class="btn btn-dark">Aplicar</button>
             </div>
             <div class="item1"> <!-- No necesitas margen derecho aquí -->
-                <button type="button" class="btn btn-dark">Limpiar</button>
+                <button type="button" class="btn btn-dark" onclick="listarProducto()">Limpiar</button>
             </div>
         </div>
 

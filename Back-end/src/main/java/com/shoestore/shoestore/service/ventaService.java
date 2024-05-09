@@ -28,11 +28,11 @@ public class ventaService implements IventaService{
         return listaVenta;
     }
 
-    @Override
-    public List<venta> filtroVenta(String filtro) {
-        List<venta> listaVenta = data.filtroVenta(filtro);
-        return listaVenta;
-    }
+    // @Override
+    // public List<venta> filtroVenta(String filtro) {
+    //     List<venta> listaVenta = data.filtroVenta(filtro);
+    //     return listaVenta;
+    // }
 
     @Override
     public List<venta>filtroEstado(String estado) {
@@ -50,5 +50,11 @@ public class ventaService implements IventaService{
     public int deleteForever(String id) {
         data.deleteById(id);
         return 1;
+    }
+
+    @Override
+    public List<venta> filtroVenta(String filtro) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'filtroVenta'");
     }
 }

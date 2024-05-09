@@ -30,6 +30,54 @@ function buscarVentaPorFiltro(filtro) {
     }
 }
 
+function buscarVentaPorEstado(estado) {
+    var url = "http://localhost:8080/api/v1/venta/busquedaEstado/";
+
+    if (estado === 'Todos' || estado === '') {
+        listarVenta(); // Mostrar todos los médicos si estado es vacío o 'Todos'
+    } else {
+        // Construir la URL según el estado seleccionado
+        switch (estado) {
+            case 'Pendiente':
+            case 'Pagada':
+            case 'Cancelada':
+            case 'Borrador':
+                url += estado;
+                break;
+            default:
+                alert("Estado no válido");
+                return;
+        }
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (result) {
+                var cuerpoTabla = document.getElementById("cuerpoTabla");
+                cuerpoTabla.innerHTML = "";
+
+                for (var i = 0; i < result.length; i++) {
+                    var trRegistro = document.createElement("tr");
+                    trRegistro.innerHTML = `
+                    <td>${result[i]["idVenta"]}</td>
+                    <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["cliente"]["apellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["total"]}</td>
+                    <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
+                    <td class="text-center align-middle">${result[i]["estado"]}</td>
+                    <td class="text-center align-middle">
+                    <button type="button" class="btn btn-secondary">Ver Detalle</button>
+                    </td>
+                `;
+                    cuerpoTabla.appendChild(trRegistro);
+                }
+            },
+            error: function (error) {
+                alert("Error en la petición: " + error);
+            }
+        });
+    }
+}
+
 
 // Llamar a las funciones para cargar las listas al cargar la página
 $(document).ready(function () {

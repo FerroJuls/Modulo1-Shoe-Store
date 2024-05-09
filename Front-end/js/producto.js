@@ -40,10 +40,10 @@ function buscarProductoPorFiltro(filtro) {
 function buscarProductoPorEstado(estado) {
     if (estado === '') {
         listarProducto(); // Mostrar todos los productos si estado es vacío
-    } else if (estado === 'ACTIVO') {
+    } else if (estado === 'Activo') {
         // Mostrar solo los productos habilitados si estado es 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/producto/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/producto/busquedaEstado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -76,7 +76,7 @@ function buscarProductoPorEstado(estado) {
     } else {
         // Mostrar solo los productos deshabilitados si no es vacío ni 'H'
         $.ajax({
-            url: "http://localhost:8080/api/v1/producto/busquedafiltroestado/" + estado,
+            url: "http://localhost:8080/api/v1/producto/busquedaEstado/" + estado,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
