@@ -44,11 +44,13 @@
                     data-bs-target="#exampleModal">Registrar Cliente...</button></div>
         </div>
         <div class="container">
-            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <input type="text" id="filtroNombre" name="filtroNombre" placeholder="Ingrese el nombre">
+            <div class="item" style="margin-right: 0.5%;">
+                <input type="text" id="filtroInput"
+                onkeypress="if(event.keyCode === 13) buscarClientePorFiltro(this.value)" placeholder="Ingrese el nombre">
             </div>
-            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <input type="text" id="filtroCiudad" name="filtroCiudad" placeholder="Ingrese la ciudad">
+            <div class="item" style="margin-right: 0.5%;">
+                <input type="text" id="filtroInput"
+                onkeypress="if(event.keyCode === 13) buscarClientePorFiltro(this.value)" placeholder="Ingrese la ciudad">
             </div>
             <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
                 <select id="filtroEstado" name="filtroEstado" onchange="buscarClientePorEstado(this.value)">
@@ -56,13 +58,15 @@
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
-                
+
             </div>
-            <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <button type="button" class="btn btn-dark">Aplicar</button>
+            <div class="item1" style="margin-right: 0.5%;">
+                <button type="button" class="btn btn-dark"
+                    onclick="buscarClientePorFiltro(document.getElementById('filtroInput').value)">Aplicar</button>
             </div>
+
             <div class="item1"> <!-- No necesitas margen derecho aquí -->
-                <button type="button" class="btn btn-dark"onclick="listarCliente()">Limpiar</button>
+                <button type="button" class="btn btn-dark" onclick="listarCliente()">Limpiar</button>
             </div>
         </div>
 

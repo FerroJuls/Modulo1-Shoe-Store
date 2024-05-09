@@ -1,14 +1,14 @@
 function buscarClientePorFiltro(filtro) {
-    if (filtro=== '') {
+    if (filtro === '') {
         listarCliente(); // Mostrar todos los Clientes si estado es vacío
-    }else{
+    } else {
         $.ajax({
             url: "http://localhost:8080/api/v1/cliente/busquedafiltro/" + filtro,
             type: "GET",
             success: function (result) {
                 var cuerpoTabla = document.getElementById("cuerpoTabla");
                 cuerpoTabla.innerHTML = "";
-    
+
                 for (var i = 0; i < result.length; i++) {
                     var trRegistro = document.createElement("tr");
                     trRegistro.innerHTML = `
@@ -21,7 +21,7 @@ function buscarClientePorFiltro(filtro) {
                         <td class="text-center align-middle">${result[i]["direccion"]}</td>
                         <td class="text-center align-middle">${result[i]["ciudad"]}</td>
                         <td class="text-center align-middle">${result[i]["correo"]}</td>
-                        <td class="text-center align-middle">${result[i]["estado"]}</td>cliente
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
                         <td class="text-center align-middle">
                             <i class="fas fa-edit editar"  onclick="registrarClienteBandera=false;" data-id="${result[i]["idCliente"]}"></i>
                             <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idCliente"]})" data-id="${result[i]["idCliente"]}"></i>
@@ -36,8 +36,8 @@ function buscarClientePorFiltro(filtro) {
             }
         });
     }
-    
 }
+
 
 function buscarClientePorEstado(estado) {
     if (estado === '') {
