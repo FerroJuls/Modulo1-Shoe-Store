@@ -1,17 +1,19 @@
-function buscarClientePorFiltro(filtro) {
-    if (filtro === '') {
-        listarCliente(); // Mostrar todos los Clientes si estado es vacío
-    } else {
-        $.ajax({
-            url: "http://localhost:8080/api/v1/cliente/busquedafiltro/" + filtro,
-            type: "GET",
-            success: function (result) {
-                var cuerpoTabla = document.getElementById("cuerpoTabla");
-                cuerpoTabla.innerHTML = "";
+function buscarPorFiltro(filtro, tipo) {
+    if (filtro.trim() === "") return; // Si el filtro está vacío, salir de la función
 
-                for (var i = 0; i < result.length; i++) {
-                    var trRegistro = document.createElement("tr");
-                    trRegistro.innerHTML = `
+    var url = tipo === "nombre" ? "http://localhost:8080/api/v1/cliente/busquedafiltro/" : "http://localhost:8080/api/v1/cliente/busquedafiltrociudad/";
+    var parametro = tipo === "nombre" ? filtro : encodeURIComponent(filtro);
+    
+    $.ajax({
+        url: url + parametro,
+        type: "GET",
+        success: function (result) {
+            var cuerpoTabla = document.getElementById("cuerpoTabla");
+            cuerpoTabla.innerHTML = "";
+
+            for (var i = 0; i < result.length; i++) {
+                var trRegistro = document.createElement("tr");
+                trRegistro.innerHTML = `
                         <td>${result[i]["idCliente"]}</td>
                         <td class="text-center align-middle">${result[i]["tipoDocumento"]}</td>
                         <td class="text-center align-middle">${result[i]["numeroDocumento"]}</td>
@@ -28,14 +30,20 @@ function buscarClientePorFiltro(filtro) {
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idCliente"]}"></i>
                         </td>
                     `;
-                    cuerpoTabla.appendChild(trRegistro);
-                }
-            },
-            error: function (error) {
-                alert("Error en la petición: " + error);
+                cuerpoTabla.appendChild(trRegistro);
             }
-        });
-    }
+        },
+        error: function (error) {
+            alert("Error en la petición: " + error);
+        }
+    });
+}
+
+
+function blanquearCampos() {
+    document.getElementById('filtroInputNombre').value = ""; // Limpiar campo de nombre
+    document.getElementById('filtroInputCiudad').value = ""; // Limpiar campo de ciudad
+    document.getElementById('filtroEstado').value = ""; // Seleccionar automáticamente el valor "Todos" en el campo de estado
 }
 
 
@@ -211,19 +219,11 @@ function registrarCliente() {
     if (registrarClienteBandera == true) {
         metodo = "POST";
         urlLocal = url;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Registro exitoso",
-            icon: "success"
-        });
+        
     } else {
         metodo = "PUT";
         urlLocal = url + idCliente;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Guardado con éxito",
-            icon: "success"
-        });
+        
     }
 
     if (validarCampos()) {
@@ -233,8 +233,8 @@ function registrarCliente() {
             data: forData,
             success: function (response) {
                 Swal.fire({
-                    title: "Éxito",
-                    text: "Felicidades, Guardado con éxito",
+                    title: "LISTO",
+                    text: "Felicidades, Registro exitoso",
                     icon: "success"
                 }).then(function () {
                     // Aquí puedes agregar más acciones después del registro exitoso
@@ -525,7 +525,11 @@ $(document).on("click", ".editar", function () {
             $('#exampleModal').modal('show');
         },
         error: function (error) {
-            alert("Error al obtener los datos del cliente: " + error.statusText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "Error al obtener los datos del cliente"
+            });
         }
     });
 });
@@ -584,7 +588,7 @@ $(document).on("click", ".eliminar", function () {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'El registro tiene un ingreso.'
+                        text: 'El registro tiene una venta.'
                     });
                 }
             });

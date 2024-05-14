@@ -35,6 +35,12 @@ public class clienteService implements IclienteService {
     }
 
     @Override
+    public List<cliente> filtroCiudad(String ciudad) {
+        List<cliente> listaCliente = data.filtroCiudad (ciudad);
+        return listaCliente;
+    }
+
+    @Override
     public List<cliente>filtroEstado(String estado) {
         List<cliente> listaCliente = data.filtroEstado(estado);
         return listaCliente;
@@ -42,6 +48,7 @@ public class clienteService implements IclienteService {
 
     @Override
     public Optional<cliente> findOne(String id) {
+        @SuppressWarnings("null")
         Optional<cliente> cliente = data.findById(id);
         return cliente;
     }

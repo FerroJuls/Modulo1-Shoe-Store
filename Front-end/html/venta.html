@@ -14,12 +14,10 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    
-
-
 </head>
 
 <body>
@@ -29,10 +27,12 @@
             <span class="company-name">Shoe Shop</span>
         </div>
         <ul>
-            <li><a href="/Front-end/html/panel.html"><i class="fas fa-info-circle"></i>Información</a></li>
             <li><a href="/Front-end/html/cliente.html"><i class="fas fa-user"></i> Cliente</a></li>
             <li><a href="/Front-end/html/producto.html"><i class="fas fa-box"></i> Producto</a></li>
-            <li><a href="/Front-end/html/venta.html"><i class="fas fa-shopping-cart"></i> Venta</a></li>
+            <li><a href="/Front-end/html/venta.html"><i class="fas fa-money-bill-alt"></i>Venta</a></li>
+            <li><a href="/Front-end/html/proveedor.html"><i class="fas fa-users"></i>Proveedor</a></li>
+            <li><a href="/Front-end/html/ordenCompra.html"><i class="fas fa-file-invoice-dollar"></i>Orden de Compra</a></li>
+            <li><a href="/Front-end/html/detalleCompra.html"><i class="fas fa-receipt"></i>Detalle de Compra</a></li>
         </ul>
     </div>
     <div class="content">
@@ -41,7 +41,7 @@
         </div>
         <div class="container">
             <div class="item" style="margin-right: 0.5%;"><label for="filtroNombre">Filtrar por cliente:</label></div>
-            <div class="item" style="margin-right: 0.5%;"><label for="filtroCiudad">Filtrar por venta - desde:</label>
+            <div class="item" style="margin-right: 0.5%;"><label for="filtroFecha">Filtrar por venta - desde:</label>
             </div>
             <div class="item" style="margin-right: 0.7%;"><label for="filtroEstado">Filtrar por venta - hasta:</label>
             </div>
@@ -53,14 +53,14 @@
         </div>
         <div class="container">
             <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <input type="text" id="filtroNombreCliente" name="filtroNombreCliente" placeholder="Ingrese el cliente">
+                <input type="text" id="filtroNombreCliente" placeholder="Ingrese el cliente">
             </div>
             <div class="item" style="margin-right: 0.5%;">
-                <input type="text" id="filtroFechaDesde" name="filtroFechaDesde" placeholder="Ingrese la fecha desde"
+                <input type="text" id="desde"  placeholder="Ingrese la fecha desde"
                     class="flatpickr-input">
             </div>
             <div class="item" style="margin-right: 0.5%;">
-                <input type="text" id="filtroFechaHasta" name="filtroFechaHasta" placeholder="Ingrese la fecha hasta"
+                <input type="text" id="hasta"  placeholder="Ingrese la fecha hasta"
                     class="flatpickr-input">
             </div>
             <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
@@ -74,10 +74,10 @@
             </div>
 
             <div class="item1" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <button type="button" class="btn btn-dark">Aplicar</button>
+                <button type="button" class="btn btn-dark" onclick="buscarVentaPorFiltro(document.getElementById('filtroNombreCliente').value, 'cliente'); ">Aplicar</button>
             </div>
             <div class="item1"> <!-- No necesitas margen derecho aquí -->
-                <button type="button" class="btn btn-dark" onclick="listarVenta()">Limpiar</button>
+                <button type="button" class="btn btn-dark" onclick="listarVenta(); blanquearCampos()">Limpiar</button>
             </div>
         </div>
 

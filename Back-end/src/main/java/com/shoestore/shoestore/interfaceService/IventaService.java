@@ -1,5 +1,6 @@
 package com.shoestore.shoestore.interfaceService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,4 +20,6 @@ public interface IventaService {
     public Optional<venta> findOne(String id);
 
     public int deleteForever(String id);
+
+    public List<venta> filtroFecha(LocalDate desde, LocalDate hasta);
 }

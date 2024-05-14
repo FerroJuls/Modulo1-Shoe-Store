@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/Front-end/img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Shop</title>
+    <link rel="stylesheet" href="/Front-end/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <a href="/Front-end/html/index.html"><img src="/Front-end/img/logo.png" alt="Logo de Shoe Shop"></a>
+            <span class="company-name">Shoe Shop</span>
+        </div>
+        <ul>
+            <li><a href="/Front-end/html/Proveedor.html"><i class="fas fa-user"></i> Proveedor</a></li>
+            <li><a href="/Front-end/html/producto.html"><i class="fas fa-box"></i> Producto</a></li>
+            <li><a href="/Front-end/html/venta.html"><i class="fas fa-money-bill-alt"></i>Venta</a></li>
+            <li><a href="/Front-end/html/proveedor.html"><i class="fas fa-users"></i>Proveedor</a></li>
+            <li><a href="/Front-end/html/ordenCompra.html"><i class="fas fa-file-invoice-dollar"></i>Orden de Compra</a></li>
+            <li><a href="/Front-end/html/detalleCompra.html"><i class="fas fa-receipt"></i>Detalle de Compra</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>Proveedor</h1>
+        </div>
+        <div class="container">
+            <div class="item" style="margin-right: 0.8%;"><label for="filtroFiltroNit">Filtrar por Nit:</label></div>
+            <div class="item" style="margin-right: 0.7%;"><label for="filtroRazonSocial">Filtrar por Razón social:</label></div>
+            <div class="item" style="margin-right: 0.5%;"><label for="filtroEstado">Filtrar por estado:</label></div>
+            <div class="item1" style="margin-right: 0%;"><button type="button" class="btn btn-dark"
+                    data-bs-toggle="modal" onclick="registrarProveedorBandera=true; limpiar();"
+                    data-bs-target="#exampleModal">Registrar Proveedor</button></div>
+        </div>
+        <div class="container">
+            <div class="item" style="margin-right: 0.5%;">
+                <input type="text" id="filtroInputNit" placeholder="Ingrese el Nit">
+            </div>
+            <div class="item" style="margin-right: 0.5%;">
+                <input type="text" id="filtroInputRazonSocial"  placeholder="Ingrese la ciudad">
+            </div>
+            <div class="item" style="margin-right: 0.5%;">
+                <select id="filtroEstado" name="filtroEstado">
+                    <option value="">Todos</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+            <div class="item1" style="margin-right: 0.5%;">
+                <button type="button" class="btn btn-dark" onclick="buscarPorFiltro(document.getElementById('filtroInputNombre').value, 'nombre'); buscarPorFiltro(document.getElementById('filtroInputCiudad').value, 'ciudad')">Aplicar</button>
+            </div>
+            
+            <div class="item1">
+                <button type="button" class="btn btn-dark" onclick="listarProveedor(); blanquearCampos()">Limpiar</button>
+            </div>
+        </div>
+
+
+        <table class=" table table-hover table-striped">
+            <div class="colorTabla">
+                <tr>
+                    <th>ID</th>
+                    <th class="text-center align-middle">T.D</th>
+                    <th class="text-center align-middle">NIT</th>
+                    <th class="text-center align-middle">Razón Social</th>
+                    <th class="text-center align-middle">Nombre</th>
+                    <th class="text-center align-middle">Cargo</th>
+                    <th class="text-center align-middle">Dirección</th>
+                    <th class="text-center align-middle">Estado</th>
+                    <th class="text-center align-middle">Opciones</th>
+                </tr>
+            </div>
+            <tbody id="cuerpoTabla"></tbody>
+            <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog fondomodaldialog">
+            <div class="modal-content col modal-custom">
+                <div class="modal-header">
+                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        id="X"></button>
+                    <h1 class="modal-title fs-5 col-11" id="exampleModalLabel"
+                        style="font-family: Georgia, 'Times New Roman', Times, serif; text-align: center;">
+                        Registro Proveedor
+                    </h1>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="centradoo">
+                            <div class="container col">
+                                <br>
+                                <form class="row table-hover needs-validation">
+
+                                    <div class="col col-xl-6 col-12 table-hover">
+                                        <label for="">NIT</label>
+                                        <input type="number" id="nit" class="form-control"
+                                            onfocusout="validarNit(this)" required>
+                                    </div>
+
+
+                                    <div class="col col-xl-6 col-12 table-hover">
+                                        <label for="">Razón Social</label>
+                                        <input type="text" id="razonSocial" class="form-control"
+                                            onfocusout="validarRazonSocial(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12 table-hover">
+                                        <label for="">Nombre</label>
+                                        <input type="text" id="nombre" class="form-control"
+                                            onfocusout="validarNombre(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12">
+                                        <label for="">Cargo</label>
+                                        <input type="text" id="cargo" class="form-control"
+                                            onfocusout="validarcargo(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12">
+                                        <label for="">Teléfono</label>
+                                        <input type="text" id="telefono" class="form-control"
+                                            onfocusout="validarTelefono(this)" required>
+                                    </div>
+
+                                    <div class="col col-xl-6 col-12">
+                                        <label for="">Dirección</label>
+                                        <input type="text" id="direccion" class="form-control"
+                                            onfocusout="validarDireccion(this)" required>
+                                    </div>
+
+
+                                    <div class="col col-xl-12 col-12">
+                                        <label for="Estado">Estado</label>
+                                        <select id="estado" class="form-control" onfocusout="validarEstado(this)"
+                                            required>
+                                            <option value="Activo">Activo</option>
+                                            <option value="Inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-dark"
+                        onclick="registrarProveedor(); limpiar();">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Front-end/js/proveedor.js"></script>
+</body>
+
+</html>
+

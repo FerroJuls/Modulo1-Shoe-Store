@@ -1,7 +1,4 @@
 function buscarVentaPorFiltro(filtro) {
-    if (filtro === '') {
-        listarVenta(); // Mostrar todos los médicos si estado es vacío
-    } else {
         $.ajax({
             url: "http://localhost:8080/api/v1/venta/busquedafiltro/" + filtro,
             type: "GET",
@@ -11,15 +8,15 @@ function buscarVentaPorFiltro(filtro) {
                 for (var i = 0; i < result.length; i++) {
                     var trRegistro = document.createElement("tr");
                     trRegistro.innerHTML = `
-                    <td>${result[i]["idVenta"]}</td>
-                    <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["cliente"]["apellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["total"]}</td>
-                    <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
-                    <td class="text-center align-middle">${result[i]["estado"]}</td>
-                    <td class="text-center align-middle">
-                    <button type="button" class="btn btn-secondary">Ver Detalle</button>
-                    </td>
-                `;
+                        <td>${result[i]["idVenta"]}</td>
+                        <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["total"]}</td>
+                        <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
+                        <td class="text-center align-middle">
+                        <a href="/Front-end/html/detalle.html"><button type="button" class="btn btn-secondary">Ver Detalle</button></a>
+                        </td>
+                    `;
                     cuerpoTabla.appendChild(trRegistro);
                 }
             },
@@ -27,8 +24,15 @@ function buscarVentaPorFiltro(filtro) {
                 alert("Error en la petición: " + error);
             }
         });
-    }
 }
+
+
+    function blanquearCampos() {
+        document.getElementById('filtroNombreCliente').value = "";
+        document.getElementById('filtroEstado').value = "";
+        document.getElementById('desde').value = "";
+        document.getElementById('hasta').value = "";
+    }
 
 function buscarVentaPorEstado(estado) {
     var url = "http://localhost:8080/api/v1/venta/busquedaEstado/";
@@ -60,12 +64,11 @@ function buscarVentaPorEstado(estado) {
                     var trRegistro = document.createElement("tr");
                     trRegistro.innerHTML = `
                     <td>${result[i]["idVenta"]}</td>
-                    <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["cliente"]["apellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["total"]}</td>
+                    <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]}</td><td class="text-center align-middle">${result[i]["total"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
                     <td class="text-center align-middle">${result[i]["estado"]}</td>
                     <td class="text-center align-middle">
-                    <button type="button" class="btn btn-secondary">Ver Detalle</button>
+                    <a href="/Front-end/html/detalle.html"><button type="button" class="btn btn-secondary">Ver Detalle</button></a>
                     </td>
                 `;
                     cuerpoTabla.appendChild(trRegistro);
@@ -120,12 +123,12 @@ function listarVenta() {
                 var trRegistro = document.createElement("tr");
                 trRegistro.innerHTML = `
                 <td>${result[i]["idVenta"]}</td>
-                <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]} ${result[i]["cliente"]["apellido"]}</td>
+                <td class="text-center align-middle">${result[i]["cliente"]["numeroDocumento"]} ${result[i]["cliente"]["nombre"]}</td>
                 <td class="text-center align-middle">${result[i]["total"]}</td>
                 <td class="text-center align-middle">${result[i]["fechaVenta"]}</td>
                 <td class="text-center align-middle">${result[i]["estado"]}</td>
                 <td class="text-center align-middle">
-                <button type="button" class="btn btn-secondary">Ver Detalle</button>
+                <a href="/Front-end/html/detalle.html"><button type="button" class="btn btn-secondary">Ver Detalle</button></a>
                 </td>
             `;
                 cuerpoTabla.appendChild(trRegistro);
@@ -137,7 +140,7 @@ function listarVenta() {
     });
 }
 
-var registrarIngresoBandera = true;
+var registrarVentaBandera = true;
 //se almacenan los valores
 function registrarVenta() {
     var cliente = document.getElementById("cliente");
@@ -169,45 +172,46 @@ function registrarVenta() {
     var metodo = "";
     var urlLocal = "";
     var textoimprimir = "";
-    if (registrarIngresoBandera == true) {
+    if (registrarVentaBandera == true) {
         metodo = "POST";
         urlLocal = url;
+        // Elimina esta alerta
+        // textoimprimir = Swal.fire({
+        //     title: "LISTO",
+        //     text: "Felicidades, Registro exitoso",
+        //     icon: "success"
+        // });
     } else {
         metodo = "PUT";
         urlLocal = url + idVenta;
     }
+
     if (validarCampos()) {
         $.ajax({
             url: urlLocal,
             type: metodo,
             data: forData,
-            success: function (result) {
-                textoimprimir;
-                $('#exampleModal').modal('hide');
-                listarVenta();
-
-                textoimprimir = Swal.fire({
+            success: function (response) {
+                Swal.fire({
                     title: "LISTO",
-                    text: "Felicidades, Guardado con éxito",
+                    text: "Guardado con éxito",
                     icon: "success"
+                }).then(function () {
+                    // Refrescar la página después de registrar exitosamente el producto
+                    $('#exampleModal').modal('hide');
+                    listarVenta();
                 });
-            },
-            error: function (error) {
-                textoimprimir = Swal.fire({
-                    title: "ERROR",
-                    text: error.responseText,
-                    icon: "ERROR"
-                });
-            }
+            },            
         });
     } else {
         Swal.fire({
-            title: "¡Error!",
+            title: "Error",
             text: "¡Llene todos los campos correctamente!",
             icon: "error"
         });
     }
-}
+};
+
 
 
 // Función para validar campos
@@ -420,7 +424,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#filtroFechaDesde').datepicker({
+    $('#desde').datepicker({
         format: 'yyyy-mm-dd', // Formato de fecha
         autoclose: true, // Cierra el datepicker cuando se selecciona una fecha
         todayHighlight: true // Resalta la fecha actual
@@ -428,9 +432,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#filtroFechaHasta').datepicker({
+    $('#hasta').datepicker({
         format: 'yyyy-mm-dd', // Formato de fecha
         autoclose: true, // Cierra el datepicker cuando se selecciona una fecha
         todayHighlight: true // Resalta la fecha actual
     });
-});
+}); 

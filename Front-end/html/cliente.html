@@ -25,10 +25,12 @@
             <span class="company-name">Shoe Shop</span>
         </div>
         <ul>
-            <li><a href="/Front-end/html/panel.html"><i class="fas fa-info-circle"></i>Información</a></li>
             <li><a href="/Front-end/html/cliente.html"><i class="fas fa-user"></i> Cliente</a></li>
             <li><a href="/Front-end/html/producto.html"><i class="fas fa-box"></i> Producto</a></li>
-            <li><a href="/Front-end/html/venta.html"><i class="fas fa-shopping-cart"></i> Venta</a></li>
+            <li><a href="/Front-end/html/venta.html"><i class="fas fa-money-bill-alt"></i>Venta</a></li>
+            <li><a href="/Front-end/html/proveedor.html"><i class="fas fa-users"></i>Proveedor</a></li>
+            <li><a href="/Front-end/html/ordenCompra.html"><i class="fas fa-file-invoice-dollar"></i>Orden de Compra</a></li>
+            <li><a href="/Front-end/html/detalleCompra.html"><i class="fas fa-receipt"></i>Detalle de Compra</a></li>
         </ul>
     </div>
     <div class="content">
@@ -45,28 +47,24 @@
         </div>
         <div class="container">
             <div class="item" style="margin-right: 0.5%;">
-                <input type="text" id="filtroInput"
-                onkeypress="if(event.keyCode === 13) buscarClientePorFiltro(this.value)" placeholder="Ingrese el nombre">
+                <input type="text" id="filtroInputNombre" placeholder="Ingrese el nombre">
             </div>
             <div class="item" style="margin-right: 0.5%;">
-                <input type="text" id="filtroInput"
-                onkeypress="if(event.keyCode === 13) buscarClientePorFiltro(this.value)" placeholder="Ingrese la ciudad">
+                <input type="text" id="filtroInputCiudad" " placeholder="Ingrese la ciudad">
             </div>
-            <div class="item" style="margin-right: 0.5%;"> <!-- Agrega margen derecho -->
-                <select id="filtroEstado" name="filtroEstado" onchange="buscarClientePorEstado(this.value)">
+            <div class="item" style="margin-right: 0.5%;">
+                <select id="filtroEstado" name="filtroEstado">
                     <option value="">Todos</option>
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
-
             </div>
             <div class="item1" style="margin-right: 0.5%;">
-                <button type="button" class="btn btn-dark"
-                    onclick="buscarClientePorFiltro(document.getElementById('filtroInput').value)">Aplicar</button>
+                <button type="button" class="btn btn-dark" onclick="buscarPorFiltro(document.getElementById('filtroInputNombre').value, 'nombre'); buscarPorFiltro(document.getElementById('filtroInputCiudad').value, 'ciudad')">Aplicar</button>
             </div>
-
-            <div class="item1"> <!-- No necesitas margen derecho aquí -->
-                <button type="button" class="btn btn-dark" onclick="listarCliente()">Limpiar</button>
+            
+            <div class="item1">
+                <button type="button" class="btn btn-dark" onclick="listarCliente(); blanquearCampos()">Limpiar</button>
             </div>
         </div>
 
@@ -188,3 +186,4 @@
 </body>
 
 </html>
+

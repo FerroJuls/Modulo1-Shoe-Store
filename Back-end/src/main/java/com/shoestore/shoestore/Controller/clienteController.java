@@ -93,10 +93,22 @@ public class clienteController {
         return new ResponseEntity<>(listaCliente, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedafiltrociudad/{ciudad}")
+    public ResponseEntity<Object> findFiltroCiudad(@PathVariable String ciudad) {
+        var listaCliente = clienteService.filtroCiudad(ciudad);
+        return new ResponseEntity<>(listaCliente, HttpStatus.OK);
+    }
+
     @GetMapping("/busquedaEstado/{estado}")
     public ResponseEntity<Object> findEstado(@PathVariable String estado){
         var listaCliente = clienteService.filtroEstado(estado);
         return new ResponseEntity<>(listaCliente, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findOne(@PathVariable String id) {
+        var cliente = clienteService.findOne(id);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

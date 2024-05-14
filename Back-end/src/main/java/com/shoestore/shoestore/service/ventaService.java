@@ -1,5 +1,6 @@
 package com.shoestore.shoestore.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +15,9 @@ import com.shoestore.shoestore.models.venta;
 public class ventaService implements IventaService{
     
     @Autowired
-    private Iventa data;
+    public Iventa data;
 
+    @SuppressWarnings("null")
     @Override
     public String save(venta venta) {
         data.save(venta);
@@ -28,16 +30,16 @@ public class ventaService implements IventaService{
         return listaVenta;
     }
 
-    // @Override
-    // public List<venta> filtroVenta(String filtro) {
-    //     List<venta> listaVenta = data.filtroVenta(filtro);
-    //     return listaVenta;
-    // }
+    @Override
+    public List<venta>  filtroVenta(String filtro) {
+        List<venta> listaVenta = data.filtroVenta(filtro);
+        return listaVenta;
+    }
 
     @Override
     public List<venta>filtroEstado(String estado) {
-        List<venta> listaIngreso = data.filtroEstado(estado);
-        return listaIngreso;
+        List<venta> listaVenta = data.filtroEstado(estado);
+        return listaVenta;
     }
 
     @Override
@@ -53,8 +55,9 @@ public class ventaService implements IventaService{
     }
 
     @Override
-    public List<venta> filtroVenta(String filtro) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filtroVenta'");
+    public List<venta> filtroFecha(LocalDate fechaDesde, LocalDate fechaHasta) {
+        List<venta> listaVenta = data.filtroFecha(fechaDesde, fechaHasta);
+        return listaVenta;
     }
+
 }

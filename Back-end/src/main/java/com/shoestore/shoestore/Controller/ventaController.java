@@ -1,6 +1,9 @@
 package com.shoestore.shoestore.Controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,27 +21,27 @@ import com.shoestore.shoestore.models.venta;
 @RequestMapping("/api/v1/venta/")
 @RestController
 public class ventaController {
-    
+
     @Autowired
     private IventaService ventaService;
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@ModelAttribute("venta") venta venta) {
-     
+
         if (venta.getCliente().equals("")) {
             return new ResponseEntity<>("El campo cliente es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (venta.getTotal().equals("")) {
-            return new ResponseEntity<>("El campo total es obligatorio",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo total es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (venta.getEstado().equals("")) {
-            return new ResponseEntity<>("El campo estado es obligatorio",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo estado es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (venta.getFechaVenta().equals("")) {
-            return new ResponseEntity<>("El campo fecha de la venta es obligatorio",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El campo fecha de la venta es obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         ventaService.save(venta);
@@ -51,19 +54,26 @@ public class ventaController {
         return new ResponseEntity<>(listaVenta, HttpStatus.OK);
     }
 
-        @GetMapping("/busquedafiltro/{filtro}")
+    @GetMapping("/busquedafiltro/{filtro}")
     public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
         var listaVenta = ventaService.filtroVenta(filtro);
         return new ResponseEntity<>(listaVenta, HttpStatus.OK);
     }
-    
 
     @GetMapping("/busquedaEstado/{estado}")
-    public ResponseEntity<Object> findEstado(@PathVariable String estado){
+    public ResponseEntity<Object> findEstado(@PathVariable String estado) {
         var listaVenta = ventaService.filtroEstado(estado);
         return new ResponseEntity<>(listaVenta, HttpStatus.OK);
     }
 
+    @GetMapping("/filtroFecha/{desde}/{hasta}")
+    public ResponseEntity<Object> filtroFecha(
+            @PathVariable("desde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
+            @PathVariable("hasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta) {
+
+        var listaVenta = ventaService.filtroFecha(desde, hasta);
+        return new ResponseEntity<>(listaVenta, HttpStatus.OK);
+    }
 
     @DeleteMapping("/eliminarPermanente/{id}")
     public ResponseEntity<Object> deleteForever(@PathVariable String id) {
@@ -80,7 +90,6 @@ public class ventaController {
             venta.setTotal(ventaUpdate.getTotal());
             venta.setFechaVenta(ventaUpdate.getFechaVenta());
             venta.setEstado(ventaUpdate.getEstado());
-            
 
             ventaService.save(venta);
             return new ResponseEntity<>(venta, HttpStatus.OK);

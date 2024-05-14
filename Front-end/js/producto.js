@@ -1,7 +1,4 @@
 function buscarProductoPorFiltro(filtro) {
-    if (filtro=== '') {
-        listarProducto(); // Mostrar todos los productos si estado es vacío
-    }else{
         $.ajax({
             url: "http://localhost:8080/api/v1/producto/busquedafiltro/" + filtro,
             type: "GET",
@@ -33,8 +30,11 @@ function buscarProductoPorFiltro(filtro) {
                 alert("Error en la petición: " + error);
             }
         });
-    }
-    
+}
+
+function blanquearCampos() {
+    document.getElementById('filtroInputNombreProducto').value = ""; // Limpiar campo de nombre
+    document.getElementById('filtroEstado').value = ""; // Seleccionar automáticamente el valor "Todos" en el campo de estado
 }
 
 function buscarProductoPorEstado(estado) {
@@ -197,19 +197,10 @@ function registrarProducto() {
     if (registrarProductoBandera == true) {
         metodo = "POST";
         urlLocal = url;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Registro exitoso",
-            icon: "success"
-        });
+        
     } else {
         metodo = "PUT";
         urlLocal = url + idProducto;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Guardado con éxito",
-            icon: "success"
-        });
     }
 
     if (validarCampos()) {
@@ -219,22 +210,15 @@ function registrarProducto() {
             data: forData,
             success: function (response) {
                 Swal.fire({
-                    title: "Éxito",
-                    text: "Felicidades, Guardado con éxito",
+                    title: "LISTO",
+                    text: "Felicidades, Registro exitoso",
                     icon: "success"
                 }).then(function () {
                     // Aquí puedes agregar más acciones después del registro exitoso
                     $('#exampleModal').modal('hide');
-                    listarProducto();
+                    listarProducto(); // Aquí se vuelve a listar los productos
                 });
-            },
-            error: function (xhr, status, error) {
-                Swal.fire({
-                    title: "Error",
-                    text: "¡El número de documento ya se encuentra registrado!",
-                    icon: "error"
-                });
-            }
+            },            
         });
     } else {
         Swal.fire({

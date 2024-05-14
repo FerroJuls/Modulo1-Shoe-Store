@@ -84,6 +84,12 @@ public class productoController {
         return new ResponseEntity<>(listaProducto, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findOne(@PathVariable String id) {
+        var producto = productoService.findOne(id);
+        return new ResponseEntity<>(producto, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
         var producto = productoService.findOne(id).get();

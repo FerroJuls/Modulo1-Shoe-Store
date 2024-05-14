@@ -13,6 +13,8 @@ public interface IclienteService {
 
     public List<cliente> filtroCliente(String filtro);
 
+    public List<cliente> filtroCiudad(String ciudad);
+
     public Optional<cliente> findOne(String id);
 
     public List<cliente> filtroEstado (String estado);
